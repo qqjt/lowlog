@@ -12,4 +12,7 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .copyDirectory('node_modules/simplemde/dist', 'public/vendor/simplemde')
+    .copyDirectory('node_modules/bootstrap-tagsinput/dist', 'public/vendor/bootstrap-tagsinput')
+    .copyDirectory('node_modules/sweetalert/dist', 'public/vendor/sweetalert');

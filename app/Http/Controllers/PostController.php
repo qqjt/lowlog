@@ -30,7 +30,7 @@ class PostController extends Controller
         $post->content = $request->input('content');
         $post->author_id = \Auth::user()->id;
         $post->save();
-        return redirect()->route('post.show', $post);
+        return ['code' => 0, 'message' => __('Post created.')];
     }
 
 

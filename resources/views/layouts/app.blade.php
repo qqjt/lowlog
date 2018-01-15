@@ -11,7 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/sweetalert/sweetalert.css')}}" rel="stylesheet">
+    @yield('style')
 </head>
 <body>
 <div id="app">
@@ -78,5 +80,7 @@
 </div>
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{asset('vendor/sweetalert/sweetalert.min.js')}}"></script>
+@yield('script')
 </body>
 </html>

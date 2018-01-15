@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::group(['middleware'=> ['auth'], 'prefix'=> 'p'], function(){
+Route::group(['middleware'=> ['auth']], function(){
     Route::get('/new', 'PostController@create')->name('post.create');
     Route::post('/new', 'PostController@store')->name('post.store');
     Route::post('/{post}/edit', 'PostController@edit')->name('post.update');
