@@ -11,7 +11,8 @@ class PostController extends Controller
 
     public function index()
     {
-        //
+        $paginatedPosts = Post::with(['tags'])->paginate(10);
+        return view('post.index', ['paginatedPosts' => $paginatedPosts]);
     }
 
     public function create()
@@ -62,12 +63,12 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('post.show', ['post'=>$post]);
+        return view('post.show', ['post' => $post]);
     }
 
     public function edit(Post $post)
     {
-        return view('post.edit', ['post'=>$post]);
+        return view('post.edit', ['post' => $post]);
     }
 
     public function update(Request $request, Post $post)

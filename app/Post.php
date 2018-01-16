@@ -45,6 +45,7 @@ class Post extends Model
      * Alter model binding key.
      *
      * @return string
+     *
      */
     public function getRouteKeyName()
     {

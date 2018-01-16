@@ -11,16 +11,14 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
-
+});*/
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
+Route::get('/', 'PostController@index')->name('index');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware'=> ['auth']], function(){
     Route::get('/new', 'PostController@create')->name('post.create');
     Route::post('/new', 'PostController@store')->name('post.store');
