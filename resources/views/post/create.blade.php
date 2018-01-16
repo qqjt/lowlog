@@ -10,7 +10,7 @@
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title">{{__('Title')}}</label>
                                 <input type="text" class="form-control" id="title" name="title"
-                                       placeholder="{{__('what\'s up?')}}">
+                                       placeholder="{{__("What's up?")}}">
                                 @if ($errors->has('title'))
                                     <span class="help-block">
                                     <strong>{{ $errors->first('title') }}</strong>
@@ -20,7 +20,7 @@
                             <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                                 <label for="content">{{__('Content')}}</label>
                                 <textarea id="content" class="form-control" rows="3"
-                                          placeholder="{{__('blabla...')}}"></textarea>
+                                          placeholder="{{__("Blabla")}}"></textarea>
                                 <input type="hidden" name="content">
                                 @if ($errors->has('content'))
                                     <span class="help-block">

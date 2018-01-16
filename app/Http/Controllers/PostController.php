@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-
     public function index()
     {
         $paginatedPosts = Post::with(['tags'])->paginate(10);
@@ -19,7 +18,6 @@ class PostController extends Controller
     {
         return view('post.create');
     }
-
 
     public function store(Request $request)
     {
