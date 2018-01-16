@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
                                 <label for="tags">{{__('Tags')}}</label>
-                                <select class="form-control" name="tags[]" id="tags" multiple></select>
+                                <select class="form-control" name="tags[]" id="tags" multiple placeholder="{{__("Type and hit 'Enter'")}}"></select>
                             </div>
                             <button id="save-post-btn" type="button" class="btn btn-primary">{{__('Submit')}}</button>
                             {!! csrf_field() !!}

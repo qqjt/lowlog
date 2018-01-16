@@ -10,7 +10,7 @@
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title">{{__('Title')}}</label>
                                 <input type="text" class="form-control" id="title" name="title" value="{{$post->title}}"
-                                       placeholder="{{__('what\'s up?')}}">
+                                       placeholder="{{__("What's up?")}}">
                                 @if ($errors->has('title'))
                                     <span class="help-block">
                                     <strong>{{ $errors->first('title') }}</strong>
@@ -20,7 +20,7 @@
                             <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                                 <label for="content">{{__('Content')}}</label>
                                 <textarea id="content" class="form-control" rows="3"
-                                          placeholder="{{__('blabla...')}}">{{$post->content}}</textarea>
+                                          placeholder="{{__('Blabla')}}">{{$post->content}}</textarea>
                                 <input type="hidden" name="content">
                                 @if ($errors->has('content'))
                                     <span class="help-block">
@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
                                 <label for="tags">{{__('Tags')}}</label>
-                                <select class="form-control" name="tags[]" id="tags" multiple>
+                                <select class="form-control" name="tags[]" id="tags" multiple placeholder="{{__("Type and hit 'Enter'")}}">
                                     @if($post->tags)
                                         @foreach($post->tags as $tag)
                                             <option value="{{$tag->tag_value}}">{{$tag->tag_value}}</option>
