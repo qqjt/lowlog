@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Post;
 use App\Markdown\Markdown;
+use Hashids;
 
 class PostObserver
 {
@@ -12,6 +13,11 @@ class PostObserver
         $markdown = new Markdown();
         $post->html = $markdown->convertMarkdownToHtml($post->content);
         $post->excerpt = str_limit(strip_tags($post->html), 140);
+    }
+
+    public function created(Post $post)
+    {
+        Post::where('id', $post->id)->update(['hashid'=>Hashids::connection('post')->encode($post->id)]);
     }
 
     public function updating(Post $post)

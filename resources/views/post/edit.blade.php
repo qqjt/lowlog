@@ -4,12 +4,12 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{__('New Post')}}</div>
+                    <div class="panel-heading">{{__('Edit: :post', ['post'=>$post->title])}}</div>
                     <div class="panel-body">
-                        <form id="new-post-form" method="post" action="{{route('post.store')}}">
+                        <form id="edit-post-form" method="post" action="{{route('post.update', [$post])}}">
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title">{{__('Title')}}</label>
-                                <input type="text" class="form-control" id="title" name="title"
+                                <input type="text" class="form-control" id="title" name="title" value="{{$post->title}}"
                                        placeholder="{{__('what\'s up?')}}">
                                 @if ($errors->has('title'))
                                     <span class="help-block">
@@ -20,7 +20,7 @@
                             <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                                 <label for="content">{{__('Content')}}</label>
                                 <textarea id="content" class="form-control" rows="3"
-                                          placeholder="{{__('blabla...')}}"></textarea>
+                                          placeholder="{{__('blabla...')}}">{{$post->content}}</textarea>
                                 <input type="hidden" name="content">
                                 @if ($errors->has('content'))
                                     <span class="help-block">
@@ -30,7 +30,13 @@
                             </div>
                             <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
                                 <label for="tags">{{__('Tags')}}</label>
-                                <select class="form-control" name="tags[]" id="tags" multiple></select>
+                                <select class="form-control" name="tags[]" id="tags" multiple>
+                                    @if($post->tags)
+                                        @foreach($post->tags as $tag)
+                                            <option value="{{$tag->tag_value}}">{{$tag->tag_value}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
                             </div>
                             <button id="save-post-btn" type="button" class="btn btn-primary">{{__('Submit')}}</button>
                             {!! csrf_field() !!}
@@ -65,8 +71,8 @@
                 $('input[name="content"]').val(simplemde.value());
                 $.ajax({
                     type: 'post',
-                    url: '{{route('post.store')}}',
-                    data: $('#new-post-form').serialize(),
+                    url: '{{route('post.update', [$post])}}',
+                    data: $('#edit-post-form').serialize(),
                     dataType: 'json',
                     beforeSend: function () {
                         $('#save-post-btn').prop('disabled', true);

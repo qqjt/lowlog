@@ -20,7 +20,12 @@ class CreatePostsTable extends Migration
             $table->string('excerpt')->nullable();
             $table->text('content');
             $table->text('html')->nullable();
+            $table->string('hashid', 20)->nullable();
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('author_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

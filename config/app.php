@@ -228,6 +228,7 @@ return [
 
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Purifier' => Mews\Purifier\Facades\Purifier::class,
+        'Hashids' => Vinkla\Hashids\Facades\Hashids::class
     ],
 
 ];
