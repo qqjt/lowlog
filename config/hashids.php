@@ -40,7 +40,7 @@ return [
     'connections' => [
 
         'post' => [
-            'salt' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            'salt' => 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             'length' => '11',
         ],
         'user' => [

@@ -25,4 +25,6 @@ Route::group(['middleware'=> ['auth']], function(){
     Route::post('/edit/{post}', 'PostController@update')->name('post.update');
     Route::get('/edit/{post}', 'PostController@edit')->name('post.edit');
 });
+
 Route::get('/p/{post}', 'PostController@show')->name('post.show');
+Route::post('/p/{post}/comment', 'CommentController@store')->name('comment.store');

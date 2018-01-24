@@ -43,20 +43,13 @@
 @endsection
 @section('script')
     <script src="{{asset('vendor/simplemde/simplemde.min.js')}}"></script>
-    <script src="{{asset('vendor/simplemde/simplemde.min.js')}}"></script>
     <script src="{{asset('vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
     <script>
         $(document).ready(function () {
             var simplemde = new SimpleMDE({
-                autoDownloadFontAwesome: true,
                 element: document.getElementById("content"),
                 spellChecker: false,
                 tabSize: 4,
-                toolbar: [
-                    "bold", "italic", "heading", "|", "quote", "code", "table",
-                    "horizontal-rule", "unordered-list", "ordered-list", "|",
-                    "link", "image", "|", "preview", "side-by-side", 'fullscreen'
-                ]
             });
 
             $('#tags').tagsinput();

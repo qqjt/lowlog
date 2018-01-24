@@ -59,8 +59,11 @@ class PostController extends Controller
     }
 
 
-    public function show(Post $post)
+    public function show($hashid)
     {
+        $post = Post::where('hashid', $hashid)->withCount('comments')->first();
+        if($post===null)
+            abort(404, __("Post Not Found."));
         return view('post.show', ['post' => $post]);
     }
 
