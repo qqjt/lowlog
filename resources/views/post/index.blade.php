@@ -10,7 +10,7 @@
                                 <div class="media">
                                     <a class="pull-left" href="">
                                         <img class="media-object img-thumbnail img-circle"
-                                             src="">
+                                             src="{{ Gravatar::src($post->author->email) }}">
                                     </a>
                                     <div class="media-body">
                                         <h4 class="media-heading"><a

@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $paginatedPosts = Post::with(['tags'])->paginate(10);
+        $paginatedPosts = Post::with(['author', 'tags'])->paginate(10);
         return view('post.index', ['paginatedPosts' => $paginatedPosts]);
     }
 

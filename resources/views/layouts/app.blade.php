@@ -12,6 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link href="{{asset('vendor/sweetalert/sweetalert.css')}}" rel="stylesheet">
+    @yield('style')
 </head>
 <body>
 <div id="app">
@@ -60,5 +63,7 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{asset('vendor/sweetalert/sweetalert.min.js')}}"></script>
+@yield('script')
 </body>
 </html>

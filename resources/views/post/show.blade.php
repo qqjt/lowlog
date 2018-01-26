@@ -27,7 +27,7 @@
                             <div class="form-group">
                                 <textarea title="{{__("Comment")}}" placeholder="{{__("Add a comment")}}" id="comment" class="form-control" rows="3"></textarea>
                             </div>
-                            <button type="submit" name="say" class="btn btn-primary btn-raised save-comment"><i class="fa fa-reply"></i>&nbsp;{{__("Comment")}}
+                            <button type="submit" class="btn btn-primary btn-raised save-comment"><i class="fa fa-reply"></i>&nbsp;{{__("Comment")}}
                             </button>
                             <input type="hidden" name="content">
                             <input type="hidden" name="post_hashid" value="{{$post->hashid}}">
@@ -48,7 +48,7 @@
                                         <a href="">
                                             <img class="media-object img-thumbnail img-circle"
                                                  alt="{{$comment->author_name}}"
-                                                 src="">
+                                                 src="{{ Gravatar::src($comment->email) }}">
                                         </a>
                                     </div>
                                     <div>
@@ -80,7 +80,7 @@
     <link href="{{asset('vendor/simplemde/simplemde.min.css')}}" rel="stylesheet">
     <style>
         .CodeMirror, .CodeMirror-scroll {
-            min-height: 200px;
+            min-height: 6em;
         }
     </style>
 @endsection
@@ -89,6 +89,7 @@
     <script src="{{asset('vendor/simplemde/simplemde.min.js')}}"></script>
     <script>
         $(document).ready(function () {
+            console.log('0000');
             var simplemde = new SimpleMDE({
                 element: document.getElementById("comment"),
                 spellChecker: false,
@@ -96,6 +97,7 @@
             });
             //comment
             $(document).on('click', '.save-comment', function () {
+                console.log(1111);
                 $('input[name="content"]').val(simplemde.value());
                 var _self = $(this);
                 $.ajax({
