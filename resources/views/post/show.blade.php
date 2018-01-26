@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+        <div class="row mt-5">
+            <div class="col-md-10 offset-md-1">
+                <div class="card">
+                    <div class="card-header">
                         <h1>
                             <a href="{{route('post.show', ['hashid'=>$post->hashid])}}">{{$post->title}}</a>
                         </h1>
@@ -12,16 +12,16 @@
                             <li><span><i class="fa fa-calendar"></i>{{(string)$post->created_at}} </span></li>
                         </ul>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         {!! $post->html !!}
                     </div>
-                    <div class="panel-footer">
+                    <div class="card-footer">
                     </div>
                 </div>
 
                 <!--Comment Form-->
-                <div class="panel panel-default">
-                    <div class="panel-body">
+                <div class="card mt-3">
+                    <div class="card-body">
                         <form role="form">
                             {!! csrf_field() !!}
                             <div class="form-group">
@@ -36,11 +36,11 @@
                 </div>
 
                 <!-- Comment List -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="card mt-3">
+                    <div class="card-header">
                         <div class="total">{{__("Comments: ")}}<b>{{$post->comments_count}}</b></div>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         <ul class="list-group">
                             @foreach($post->comments as $comment)
                                 <li class="list-group-item media">

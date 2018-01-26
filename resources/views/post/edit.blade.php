@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">{{__('Edit: :post', ['post'=>$post->title])}}</div>
-                    <div class="panel-body">
+        <div class="row mt-5">
+            <div class="col-md-10 offset-md-1">
+                <div class="card">
+                    <div class="card-header">{{__('Edit: :post', ['post'=>$post->title])}}</div>
+                    <div class="card-body">
                         <form id="edit-post-form" method="post" action="{{route('post.update', [$post])}}">
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title">{{__('Title')}}</label>
