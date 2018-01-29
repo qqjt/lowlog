@@ -25,9 +25,11 @@
                         <form role="form">
                             {!! csrf_field() !!}
                             <div class="form-group">
-                                <textarea title="{{__("Comment")}}" placeholder="{{__("Add a comment")}}" id="comment" class="form-control" rows="3"></textarea>
+                                <textarea title="{{__("Comment")}}" placeholder="{{__("Add a comment")}}" id="comment"
+                                          class="form-control" rows="3"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-raised save-comment"><i class="fa fa-reply"></i>&nbsp;{{__("Comment")}}
+                            <button type="submit" class="btn btn-primary btn-raised save-comment"><i
+                                        class="fa fa-reply"></i>&nbsp;{{__("Comment")}}
                             </button>
                             <input type="hidden" name="content">
                             <input type="hidden" name="post_hashid" value="{{$post->hashid}}">
@@ -40,37 +42,35 @@
                     <div class="card-header">
                         <div class="total">{{__("Comments: ")}}<b>{{$post->comments_count}}</b></div>
                     </div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            @foreach($post->comments as $comment)
-                                <li class="list-group-item media">
-                                    <div class="pull-left">
-                                        <a href="">
-                                            <img class="media-object img-thumbnail img-circle"
-                                                 alt="{{$comment->author_name}}"
-                                                 src="{{ Gravatar::src($comment->email) }}">
+                    <ul class="list-group list-group-flush">
+                        @foreach($post->comments as $comment)
+                            <li class="list-group-item media">
+                                <div class="pull-left mr-3">
+                                    <a href="">
+                                        <img class="media-object img-thumbnail rounded-circle"
+                                             alt="{{$comment->author_name}}"
+                                             src="{{ Gravatar::src($comment->email) }}">
+                                    </a>
+                                </div>
+                                <div>
+                                    <div class="media-heading">
+                                        <a href=""
+                                           title="{{$comment->author_name}}">
+                                            {{$comment->author_name}}
                                         </a>
-                                    </div>
-                                    <div>
-                                        <div class="media-heading">
-                                            <a href=""
-                                               title="{{$comment->author_name}}">
-                                                {{$comment->author_name}}
-                                            </a>
-                                            <span class="pull-right"></span>
-                                            <div class="meta">
-                                                <!-- TODO floor, nice time -->
-                                                <span class="" title="">{{(string)$comment->created_at}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="media-body">
-                                            {!! $comment->html !!}
+                                        <span class="pull-right"></span>
+                                        <div class="meta">
+                                            <!-- TODO floor, nice time -->
+                                            <span class="" title="">{{(string)$comment->created_at}}</span>
                                         </div>
                                     </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
+                                    <div class="media-body">
+                                        {!! $comment->html !!}
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

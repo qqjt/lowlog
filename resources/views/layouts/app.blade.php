@@ -57,8 +57,9 @@
 
         </div>
     </nav>
-
     @yield('content')
+    <footer class="mt-3">
+    </footer>
 </div>
 
 <!-- Scripts -->
