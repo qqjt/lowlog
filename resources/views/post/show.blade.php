@@ -42,35 +42,33 @@
                     <div class="card-header">
                         <div class="total">{{__("Comments: ")}}<b>{{$post->comments_count}}</b></div>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        @foreach($post->comments as $comment)
-                            <li class="list-group-item media">
-                                <div class="pull-left mr-3">
-                                    <a href="">
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            @foreach($post->comments as $comment)
+                                <li class="media">
+                                    <a class="mr-3" href="">
                                         <img class="media-object img-thumbnail rounded-circle"
                                              alt="{{$comment->author_name}}"
                                              src="{{ Gravatar::src($comment->email) }}">
                                     </a>
-                                </div>
-                                <div>
-                                    <div class="media-heading">
-                                        <a href=""
-                                           title="{{$comment->author_name}}">
-                                            {{$comment->author_name}}
-                                        </a>
-                                        <span class="pull-right"></span>
-                                        <div class="meta">
-                                            <!-- TODO floor, nice time -->
-                                            <span class="" title="">{{(string)$comment->created_at}}</span>
-                                        </div>
-                                    </div>
                                     <div class="media-body">
+                                        <div class="media-heading">
+                                            <a href=""
+                                               title="{{$comment->author_name}}">
+                                                {{$comment->author_name}}
+                                            </a>
+                                            <!-- TODO floor, nice time -->
+                                            <span class="pull-right">{{(string)$comment->created_at}}</span>
+                                            {{--<div class="meta">
+                                                <span class="" title=""></span>
+                                            </div>--}}
+                                        </div>
                                         {!! $comment->html !!}
                                     </div>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

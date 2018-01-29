@@ -17,14 +17,17 @@
 Auth::routes();
 Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::get('/', 'PostController@index')->name('index');
+Route::get('/', 'PostController@index')->name('post.index');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['middleware'=> ['auth']], function(){
-    Route::get('/new', 'PostController@create')->name('post.create');
-    Route::post('/new', 'PostController@store')->name('post.store');
-    Route::post('/edit/{post}', 'PostController@update')->name('post.update');
-    Route::get('/edit/{post}', 'PostController@edit')->name('post.edit');
+Route::group(['prefix'=>'p'], function(){
+    //add, edit, comment post
+    Route::middleware(['auth'])->group(function(){
+        Route::get('/create', 'PostController@create')->name('post.create');
+        Route::post('/create', 'PostController@store')->name('post.store');
+        Route::post('/{post}/edit', 'PostController@update')->name('post.update');
+        Route::get('/{post}/edit', 'PostController@edit')->name('post.edit');
+        Route::post('/{post}/comment', 'CommentController@store')->name('comment.store');
+    });
+    //show post
+    Route::get('/{post}', 'PostController@show')->name('post.show');
 });
-
-Route::get('/p/{post}', 'PostController@show')->name('post.show');
-Route::post('/p/{post}/comment', 'CommentController@store')->name('comment.store');

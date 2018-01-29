@@ -4,13 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Tag;
+use function foo\func;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $paginatedPosts = Post::with(['author', 'tags'])->paginate(10);
+        $query = Post::with(['author', 'tags']);
+        if($request->has('tags')) {
+            $tags = explode(',', $request->input('tags'));
+            if (!empty($tags)){
+                foreach($tags as $tagValue){
+                    $query = $query->whereHas('tags', function($q) use ($tagValue){
+                        $q->where('tag_value', $tagValue);
+                    });
+                }
+            }
+        }
+        $paginatedPosts = $query->paginate(10);
         return view('post.index', ['paginatedPosts' => $paginatedPosts]);
     }
 
@@ -61,7 +73,9 @@ class PostController extends Controller
 
     public function show($hashid)
     {
-        $post = Post::where('hashid', $hashid)->withCount('comments')->first();
+        $post = Post::where('hashid', $hashid)->with(['comments'=> function($query){
+            $query->orderBy('created_at', 'desc');
+        }])->withCount('comments')->first();
         if($post===null)
             abort(404, __("Post Not Found."));
         return view('post.show', ['post' => $post]);

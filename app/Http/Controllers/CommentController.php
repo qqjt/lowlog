@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * TODO support nested comments
+ */
 namespace App\Http\Controllers;
 
 use App\Comment;

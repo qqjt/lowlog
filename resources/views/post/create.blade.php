@@ -52,7 +52,9 @@
                 tabSize: 4,
             });
 
-            $('#tags').tagsinput();
+            $('#tags').tagsinput({
+                tagClass: 'badge badge-primary'
+            });
 
             $(document).on('click', '#save-post-btn', function () {
                 $('input[name="content"]').val(simplemde.value());
