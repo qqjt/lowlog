@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Post;
 use App\Tag;
 use function foo\func;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PostController extends Controller
 {
@@ -74,11 +76,22 @@ class PostController extends Controller
     public function show($hashid)
     {
         $post = Post::where('hashid', $hashid)->with(['comments'=> function($query){
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('created_at');
         }])->withCount('comments')->first();
         if($post===null)
             abort(404, __("Post Not Found."));
-        return view('post.show', ['post' => $post]);
+        //load page default comments(the last page), for ajax loading comments refer to load() in CommentController
+        $perPage = 1;
+        $query = $post->comments();
+        $totalCount = $post->comments_count;
+        $pageCount = intval(($totalCount - 1) / $perPage) + 1;
+        $currentPage = $pageCount;
+        $comments = $query->orderBy('id')->skip(($currentPage - 1) * $perPage)->take($perPage)->get();
+
+        $paginator = new LengthAwarePaginator($comments, $totalCount, $perPage, $currentPage, [
+            'path' => route('comment.load', ['post'=>$post->hashid]),
+        ]);
+        return view('post.show', ['post' => $post, 'comments'=>$paginator]);
     }
 
     public function edit(Post $post)

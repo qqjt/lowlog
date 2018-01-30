@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CommentController extends Controller
 {
@@ -42,5 +43,22 @@ class CommentController extends Controller
         }catch (\Exception $e) {
             return ['code'=>1, 'message'=> __($e->getMessage())];
         }
+    }
+
+    public function load(Request $request, Post $post)
+    {
+        $perPage = 1;
+        $query = $post->comments();
+        //Manually create paginator, defaults to the last page.
+        $totalCount = $query->count();
+        $pageCount = intval(($totalCount - 1) / $perPage) + 1;
+        $currentPage = $request->has('page') ? LengthAwarePaginator::resolveCurrentPage() : $pageCount;
+        $comments = $query->orderBy('id')->skip(($currentPage - 1) * $perPage)->take($perPage)->get();
+
+        $paginator = new LengthAwarePaginator($comments, $totalCount, $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
+        $paginator->appends($request->except('page'));
+        return view('comment.load', ['comments' => $paginator])->render();
     }
 }

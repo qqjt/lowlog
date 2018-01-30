@@ -18,57 +18,30 @@
                     <div class="card-footer">
                     </div>
                 </div>
-
-                <!--Comment Form-->
+                <!-- Comments list ajax -->
                 <div class="card mt-3">
-                    <div class="card-body">
-                        <form role="form">
-                            {!! csrf_field() !!}
-                            <div class="form-group">
-                                <textarea title="{{__("Comment")}}" placeholder="{{__("Add a comment")}}" id="comment"
-                                          class="form-control" rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-raised save-comment"><i
-                                        class="fa fa-reply"></i>&nbsp;{{__("Comment")}}
-                            </button>
-                            <input type="hidden" name="content">
-                            <input type="hidden" name="post_hashid" value="{{$post->hashid}}">
-                        </form>
+                    <div class="card-header">
+                        <div class="total">{{__("Comments: ")}}<b id="comments-count">{{$post->comments_count}}</b></div>
+                    </div>
+                    <div id="comments" class="card-body">
+                        @include('comment.load')
                     </div>
                 </div>
 
-                <!-- Comment List -->
-                <div class="card mt-3">
-                    <div class="card-header">
-                        <div class="total">{{__("Comments: ")}}<b>{{$post->comments_count}}</b></div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-unstyled mb-0">
-                            @foreach($post->comments as $comment)
-                                <li class="media">
-                                    <a class="mr-3" href="">
-                                        <img class="media-object img-thumbnail rounded-circle"
-                                             alt="{{$comment->author_name}}"
-                                             src="{{ Gravatar::src($comment->email) }}">
-                                    </a>
-                                    <div class="media-body">
-                                        <div class="media-heading">
-                                            <a href=""
-                                               title="{{$comment->author_name}}">
-                                                {{$comment->author_name}}
-                                            </a>
-                                            <!-- TODO floor, nice time -->
-                                            <span class="pull-right">{{(string)$comment->created_at}}</span>
-                                            {{--<div class="meta">
-                                                <span class="" title=""></span>
-                                            </div>--}}
-                                        </div>
-                                        {!! $comment->html !!}
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <!--Comment Form-->
+                <div class="mt-3">
+                    <form role="form">
+                        {!! csrf_field() !!}
+                        <div class="form-group">
+                                <textarea title="{{__("Comment")}}" placeholder="{{__("Add a comment")}}" id="comment"
+                                          class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-raised save-comment"><i
+                                    class="fa fa-reply"></i>&nbsp;{{__("Comment")}}
+                        </button>
+                        <input type="hidden" name="content">
+                        <input type="hidden" name="post_hashid" value="{{$post->hashid}}">
+                    </form>
                 </div>
             </div>
         </div>
@@ -87,13 +60,29 @@
     <script src="{{asset('vendor/simplemde/simplemde.min.js')}}"></script>
     <script>
         $(document).ready(function () {
-            console.log('0000');
+            //Markdown editor
             var simplemde = new SimpleMDE({
                 element: document.getElementById("comment"),
                 spellChecker: false,
                 tabSize: 4,
+                status: false
             });
-            //comment
+            //Ajax load comments
+            $('body').on('click', '.pagination a', function(e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                getComments(url);
+            });
+            function getComments(url) {
+                $.ajax({
+                    url : url
+                }).done(function (data) {
+                    $('#comments').html(data);
+                }).fail(function () {
+                    alert("{{__("Comments could not be loaded.")}}");
+                });
+            }
+            //Add comment action
             $(document).on('click', '.save-comment', function () {
                 console.log(1111);
                 $('input[name="content"]').val(simplemde.value());

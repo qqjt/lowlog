@@ -30,4 +30,5 @@ Route::group(['prefix'=>'p'], function(){
     });
     //show post
     Route::get('/{post}', 'PostController@show')->name('post.show');
+    Route::get('/{post}/c', 'CommentController@load')->name('comment.load');
 });
