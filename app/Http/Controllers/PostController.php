@@ -81,7 +81,7 @@ class PostController extends Controller
         if($post===null)
             abort(404, __("Post Not Found."));
         //load page default comments(the last page), for ajax loading comments refer to load() in CommentController
-        $perPage = 1;
+        $perPage = 10;
         $query = $post->comments();
         $totalCount = $post->comments_count;
         $pageCount = intval(($totalCount - 1) / $perPage) + 1;

@@ -33,10 +33,10 @@
                     <form role="form">
                         {!! csrf_field() !!}
                         <div class="form-group">
-                                <textarea title="{{__("Comment")}}" placeholder="{{__("Add a comment")}}" id="comment"
-                                          class="form-control" rows="3"></textarea>
+                            <textarea title="{{__("Comment")}}" placeholder="{{__("Add a comment")}}" id="comment"
+                                      class="form-control" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-raised save-comment"><i
+                        <button type="submit" class="btn btn-primary btn-raised save-comment" data-editor="comment"><i
                                     class="fa fa-reply"></i>&nbsp;{{__("Comment")}}
                         </button>
                         <input type="hidden" name="content">
@@ -59,9 +59,10 @@
 @section('script')
     <script src="{{asset('vendor/simplemde/simplemde.min.js')}}"></script>
     <script>
+        var editors = [];
         $(document).ready(function () {
             //Markdown editor
-            var simplemde = new SimpleMDE({
+            editors['comment'] = new SimpleMDE({
                 element: document.getElementById("comment"),
                 spellChecker: false,
                 tabSize: 4,
@@ -84,8 +85,8 @@
             }
             //Add comment action
             $(document).on('click', '.save-comment', function () {
-                console.log(1111);
-                $('input[name="content"]').val(simplemde.value());
+                var editor_name = $(this).data('editor');
+                $(this).closest('form').find('input[name="content"]').val(editors[editor_name].value());
                 var _self = $(this);
                 $.ajax({
                     type: 'post',
@@ -121,7 +122,7 @@
                             }
                         } else {
                             swal({
-                                title: "回复失败！",
+                                title: "{{__("Comment failed.")}}",
                                 type: "error"
                             });
                         }

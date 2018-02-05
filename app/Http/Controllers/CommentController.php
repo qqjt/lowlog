@@ -47,7 +47,7 @@ class CommentController extends Controller
 
     public function load(Request $request, Post $post)
     {
-        $perPage = 1;
+        $perPage = 10;
         $query = $post->comments();
         //Manually create paginator, defaults to the last page.
         $totalCount = $query->count();
