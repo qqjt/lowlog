@@ -15,7 +15,7 @@ class CommentController extends Controller
     {
         //TODO adjust rule according to Auth status
         $this->validate($request, [
-            'author'=>'string|max:191',
+            'author_name'=>'string|max:191',
             'email'=>'email|max:191',
             'url'=>'email|max:191',
             'content'=>'required|string',

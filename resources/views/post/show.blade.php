@@ -16,12 +16,18 @@
                         {!! $post->html !!}
                     </div>
                     <div class="card-footer">
+                        <div class="pull-right">
+                            <a href="{{route('post.edit', [$post])}}">
+                                <button type="button" class="btn btn-primary"><i
+                                            class="fa fa-edit"></i>&nbsp;{{__("Edit")}}</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <!-- Comments list ajax -->
                 <div class="card mt-3">
                     <div class="card-header">
-                        <div class="total">{{__("Comments: ")}}<b id="comments-count">{{$post->comments_count}}</b></div>
+                        <div class="total">{{__("Comments: ")}}<b>{{$post->comments_count}}</b></div>
                     </div>
                     <div id="comments" class="card-body">
                         @include('comment.load')
@@ -32,6 +38,20 @@
                 <div class="mt-3">
                     <form role="form">
                         {!! csrf_field() !!}
+                        @if(Auth::guest())
+                            <div class="form-group">
+                                <label for="author_name">{{__("Name: ")}}</label>
+                                <input type="text" class="form-control" name="author_name" id="author_name" placeholder="{{__("Name")}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">{{__("Email Address: ")}}</label>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="{{__("Email address")}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="url">{{__("Website: ")}}</label>
+                                <input type="text" class="form-control" name="url" id="url" placeholder="{{__("http(s)://")}}">
+                            </div>
+                        @endif
                         <div class="form-group">
                             <textarea title="{{__("Comment")}}" placeholder="{{__("Add a comment")}}" id="comment"
                                       class="form-control" rows="3"></textarea>
@@ -69,20 +89,22 @@
                 status: false
             });
             //Ajax load comments
-            $('body').on('click', '.pagination a', function(e) {
+            $('body').on('click', '.pagination a', function (e) {
                 e.preventDefault();
                 var url = $(this).attr('href');
                 getComments(url);
             });
+
             function getComments(url) {
                 $.ajax({
-                    url : url
+                    url: url
                 }).done(function (data) {
                     $('#comments').html(data);
                 }).fail(function () {
                     alert("{{__("Comments could not be loaded.")}}");
                 });
             }
+
             //Add comment action
             $(document).on('click', '.save-comment', function () {
                 var editor_name = $(this).data('editor');
