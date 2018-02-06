@@ -70,4 +70,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class, 'author_id');
     }
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_role')->withTimestamps();
+    }
 }

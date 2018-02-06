@@ -167,7 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Baum\Providers\BaumServiceProvider::class,
         /*
          * Application Service Providers...
          */
