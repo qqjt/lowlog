@@ -65,7 +65,7 @@
                 ]
             });
 
-            $('#tags').tagsinput();
+            $('#tags').tagsinput({tagClass: 'badge badge-primary'});
 
             $(document).on('click', '#save-post-btn', function () {
                 $('input[name="content"]').val(simplemde.value());
@@ -78,7 +78,7 @@
                         $('#save-post-btn').prop('disabled', true);
                     },
                     success: function (res) {
-                        if (res.code == 0) {
+                        if (res.code === 0) {
                             swal({
                                 title: res.message
                             }, function () {

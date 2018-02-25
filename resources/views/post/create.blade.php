@@ -67,7 +67,7 @@
                         $('#save-post-btn').prop('disabled', true);
                     },
                     success: function (res) {
-                        if (res.code == 0) {
+                        if (res.code === 0) {
                             swal({
                                 title: res.message
                             }, function () {
