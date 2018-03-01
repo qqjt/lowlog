@@ -56,7 +56,7 @@ class BlogInit extends Command
         }
         if (!$owner)
             return false;
-        $this->info("Blog owner: $owner->email, email: $owner->name");
+        $this->info("Blog owner: $owner->name, email: $owner->email");
         // Create default roles
         $roleNames = ['author', 'subscriber'];
         foreach ($roleNames as $roleName) {
