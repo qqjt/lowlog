@@ -22,10 +22,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix'=>'p'], function(){
     //add, edit, comment post
     Route::middleware(['auth'])->group(function(){
-        Route::get('/create', 'PostController@create')->name('post.create');
-        Route::post('/create', 'PostController@store')->name('post.store');
-        Route::post('/{post}/edit', 'PostController@update')->name('post.update');
-        Route::get('/{post}/edit', 'PostController@edit')->name('post.edit');
+        Route::get('/create', 'PostController@create')->name('post.create')->middleware('can:create,App\Post');
+        Route::post('/create', 'PostController@store')->name('post.store')->middleware('can:create,App\Post');
+        Route::post('/{post}/edit', 'PostController@update')->name('post.update')->middleware('can:update,post');
+        Route::get('/{post}/edit', 'PostController@edit')->name('post.edit')->middleware('can:update,post');
         Route::post('/{post}/comment', 'CommentController@store')->name('comment.store');
     });
     //show post
