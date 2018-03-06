@@ -51,6 +51,8 @@
     <script src="{{asset('vendor/simplemde/simplemde.min.js')}}"></script>
     <script src="{{asset('vendor/simplemde/simplemde.min.js')}}"></script>
     <script src="{{asset('vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
+    <script src="{{asset('vendor/inline-attachment/inline-attachment.js')}}"></script>
+    <script src="{{asset('vendor/inline-attachment/codemirror-4.inline-attachment.js')}}"></script>
     <script>
         $(document).ready(function () {
             var simplemde = new SimpleMDE({
@@ -63,6 +65,29 @@
                     "horizontal-rule", "unordered-list", "ordered-list", "|",
                     "link", "image", "|", "preview", "side-by-side", 'fullscreen'
                 ]
+            });
+            inlineAttachment.editors.codemirror4.attach(simplemde.codemirror, {
+                uploadUrl: "{{route('image.upload')}}",
+                extraParams: {
+                    "_token": "{{csrf_token()}}"
+                },
+                onFileUploadResponse: function(xhr) {
+                    var result = JSON.parse(xhr.responseText),
+                        filename = result[this.settings.jsonFieldName];
+
+                    if (result && filename) {
+                        var newValue;
+                        if (typeof this.settings.urlText === 'function') {
+                            newValue = this.settings.urlText.call(this, filename, result);
+                        } else {
+                            newValue = this.settings.urlText.replace(this.filenameTag, filename);
+                        }
+                        var text = this.editor.getValue().replace(this.lastValue, newValue);
+                        this.editor.setValue(text);
+                        this.settings.onFileUploaded.call(this, filename);
+                    }
+                    return false;
+                }
             });
 
             $('#tags').tagsinput({tagClass: 'badge badge-primary'});

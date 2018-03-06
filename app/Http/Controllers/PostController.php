@@ -14,11 +14,11 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $query = Post::with(['author', 'tags']);
-        if($request->has('tags')) {
+        if ($request->has('tags')) {
             $tags = explode(',', $request->input('tags'));
-            if (!empty($tags)){
-                foreach($tags as $tagValue){
-                    $query = $query->whereHas('tags', function($q) use ($tagValue){
+            if (!empty($tags)) {
+                foreach ($tags as $tagValue) {
+                    $query = $query->whereHas('tags', function ($q) use ($tagValue) {
                         $q->where('tag_value', $tagValue);
                     });
                 }
@@ -75,10 +75,10 @@ class PostController extends Controller
 
     public function show($hashid)
     {
-        $post = Post::where('hashid', $hashid)->with(['comments'=> function($query){
+        $post = Post::where('hashid', $hashid)->with(['comments' => function ($query) {
             $query->orderBy('created_at');
         }])->withCount('comments')->first();
-        if($post===null)
+        if ($post === null)
             abort(404, __("Post Not Found."));
         //load page default comments(the last page), for ajax loading comments refer to load() in CommentController
         $perPage = 10;
@@ -89,9 +89,9 @@ class PostController extends Controller
         $comments = $query->orderBy('id')->skip(($currentPage - 1) * $perPage)->take($perPage)->get();
 
         $paginator = new LengthAwarePaginator($comments, $totalCount, $perPage, $currentPage, [
-            'path' => route('comment.load', ['post'=>$post->hashid]),
+            'path' => route('comment.load', ['post' => $post->hashid]),
         ]);
-        return view('post.show', ['post' => $post, 'comments'=>$paginator]);
+        return view('post.show', ['post' => $post, 'comments' => $paginator]);
     }
 
     public function edit(Post $post)
