@@ -2,14 +2,14 @@
 @section('content')
     <div class="container">
         <div class="row mt-5">
-            <div class="col-md-10 offset-md-1">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <h1>
                             <a href="{{route('post.show', ['hashid'=>$post->hashid])}}">{{$post->title}}</a>
                         </h1>
                         <ul class="list-inline list-unstyled">
-                            <li><span><i class="fa fa-calendar"></i>{{(string)$post->created_at}} </span></li>
+                            <li><span><i class="fa fa-calendar"></i>&nbsp;{{(string)$post->created_at}} </span></li>
                         </ul>
                     </div>
                     <div class="card-body">
@@ -86,7 +86,8 @@
                 element: document.getElementById("comment"),
                 spellChecker: false,
                 tabSize: 4,
-                status: false
+                status: false,
+                autoDownloadFontAwesome: false
             });
             //Ajax load comments
             $('body').on('click', '.pagination a', function (e) {
