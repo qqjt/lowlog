@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Post;
 use App\Markdown\Markdown;
+use Carbon\Carbon;
 use Hashids;
 
 class PostObserver
@@ -13,6 +14,7 @@ class PostObserver
         $markdown = new Markdown();
         $post->html = $markdown->convertMarkdownToHtml($post->content);
         $post->excerpt = str_limit(strip_tags($post->html), 140);
+        $post->posted_at = Carbon::now()->format('Y-m-d H:i:s');
     }
 
     public function created(Post $post)

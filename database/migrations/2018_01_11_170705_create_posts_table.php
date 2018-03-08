@@ -21,8 +21,9 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->text('html')->nullable();
             $table->string('hashid', 20)->nullable();
-            $table->softDeletes();
+            $table->timestamp('posted_at');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('author_id')->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');

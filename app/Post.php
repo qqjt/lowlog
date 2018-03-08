@@ -42,6 +42,8 @@ class Post extends Model
 {
     use SoftDeletes;
 
+    protected $dates = ['created_at', 'updated_at', 'deleted_at', 'posted_at'];
+
     /**
      * Alter model binding key.
      *
