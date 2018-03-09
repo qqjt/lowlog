@@ -9,7 +9,7 @@
                             <a href="{{route('post.show', ['hashid'=>$post->hashid])}}">{{$post->title}}</a>
                         </h1>
                         <ul class="list-inline list-unstyled">
-                            <li><span><i class="fa fa-calendar"></i>&nbsp;{{(string)$post->created_at}} </span></li>
+                            <li><span><i class="fa fa-calendar"></i>&nbsp;{{(string)$post->posted_at}} </span></li>
                         </ul>
                     </div>
                     <div class="card-body">
@@ -135,10 +135,10 @@
                     },
                     error: function (data) {
                         if (data.status === 422) {
-                            var errors = data.responseJSON;
-                            for (var o in errors) {
+                            var res = data.responseJSON;
+                            for (var o in res.errors) {
                                 swal({
-                                    title: errors[o][0],
+                                    title: res.errors[o],
                                     type: "error"
                                 });
                                 break;

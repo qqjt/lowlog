@@ -13,8 +13,7 @@ class PostObserver
     {
         $markdown = new Markdown();
         $post->html = $markdown->convertMarkdownToHtml($post->content);
-        $post->excerpt = str_limit(strip_tags($post->html), 140);
-        $post->posted_at = Carbon::now()->format('Y-m-d H:i:s');
+        $post->excerpt = str_limit(strip_tags($post->html), 300);
     }
 
     public function created(Post $post)

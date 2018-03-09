@@ -14,7 +14,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Post::with(['author', 'tags']);
+        $query = Post::with(['author', 'tags'])->orderBy('posted_at', 'desc');
         if ($request->has('tags')) {
             $tags = explode(',', $request->input('tags'));
             if (!empty($tags)) {

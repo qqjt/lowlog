@@ -8,11 +8,7 @@
                         @if(count($paginatedPosts))
                             <ul class="list-unstyled mb-0">
                             @foreach($paginatedPosts as $post)
-                                <li class="media">
-                                    <a class="mr-3" href="">
-                                        <img class="media-object img-thumbnail rounded-circle"
-                                             src="{{ Gravatar::src($post->author->email) }}">
-                                    </a>
+                                <li class="media @if(!$loop->last) mb-3 @endif">
                                     <div class="media-body">
                                         <h4 class="media-heading"><a
                                                     href="{{route('post.show', ['hashid'=> $post->hashid])}}">{{$post->title}}</a>
@@ -20,7 +16,7 @@
                                         <p>{{$post->excerpt}}</p>
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
-                                                <span><i class="fa fa-calendar"></i> {{(string)$post->created_at}}</span>
+                                                <span><i class="fa fa-calendar"></i> {{(string)$post->posted_at}}</span>
                                             </li>
                                             <li class="list-inline-item">
                                                 @if(!$post->tags->isEmpty())

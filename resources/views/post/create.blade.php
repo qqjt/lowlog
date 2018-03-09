@@ -132,7 +132,6 @@
                     error: function (data) {
                         if (data.status === 422) {
                             var res = data.responseJSON;
-                            console.log(res.errors);
                             for (var o in res.errors) {
                                 swal({
                                     title: res.errors[o],
