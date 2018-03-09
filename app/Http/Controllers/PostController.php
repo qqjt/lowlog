@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Post;
 use App\Tag;
+use Carbon\Carbon;
 use function foo\func;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -36,14 +37,16 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'content' => 'required'
+            'title' => 'required|string|max:191',
+            'content' => 'required|string',
+            'posted_at' => 'required|date_format:Y-m-d H:i:s'
         ]);
         try {
             \DB::beginTransaction();
             $post = new Post();
             $post->title = $request->input('title');
             $post->content = $request->input('content');
+            $post->posted_at = $request->input('posted_at')?:Carbon::now()->format('Y-m-d H:i:s');
             $post->author_id = \Auth::user()->id;
             $post->save();
             //handle tags
@@ -103,12 +106,14 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|string|max:191',
-            'content' => 'nullable'
+            'content' => 'required|string',
+            'posted_at' => 'required|date_format:Y-m-d H:i:s'
         ]);
         try {
             \DB::beginTransaction();
             $post->title = $request->input('title');
             $post->content = $request->input('content');
+            $post->posted_at = $request->input('posted_at');
             $post->save();
             $tagIds = [];
             if (!empty($request->input('tags'))) {

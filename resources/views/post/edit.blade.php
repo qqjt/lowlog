@@ -28,9 +28,27 @@
                                 </span>
                                 @endif
                             </div>
+
+                            <div class="form-group{{ $errors->has('posted_at') ? ' has-error' : '' }}">
+                                <label for="posted_at">{{__('Posted at')}}</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="posted_at" name="posted_at"
+                                           placeholder="{{__("Post datetime")}}" value="{{$post->posted_at}}">
+                                    <span class="input-group-append input-group-addon">
+                                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                </span>
+                                </div>
+                                @if ($errors->has('posted_at'))
+                                    <span class="help-block">
+                                    <strong>{{ $errors->first('posted_at') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
                             <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
                                 <label for="tags">{{__('Tags')}}</label>
-                                <select class="form-control" name="tags[]" id="tags" multiple placeholder="{{__("Type and hit 'Enter'")}}">
+                                <select class="form-control" name="tags[]" id="tags" multiple
+                                        placeholder="{{__("Type and hit 'Enter'")}}">
                                     @if($post->tags)
                                         @foreach($post->tags as $tag)
                                             <option value="{{$tag->tag_value}}">{{$tag->tag_value}}</option>
@@ -53,10 +71,12 @@
     <script src="{{asset('vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
     <script src="{{asset('vendor/inline-attachment/inline-attachment.js')}}"></script>
     <script src="{{asset('vendor/inline-attachment/codemirror-4.inline-attachment.js')}}"></script>
+    <script src="{{asset('vendor/moment/moment-with-locales.min.js')}}"></script>
+    <script src="{{asset('vendor/pc-bootstrap4-datetimepicker/js/bootstrap-datetimepicker.min.js')}}"></script>
     <script>
         $(document).ready(function () {
             var simplemde = new SimpleMDE({
-                autoDownloadFontAwesome: true,
+                autoDownloadFontAwesome: false,
                 element: document.getElementById("content"),
                 spellChecker: false,
                 tabSize: 4,
@@ -71,7 +91,7 @@
                 extraParams: {
                     "_token": "{{csrf_token()}}"
                 },
-                onFileUploadResponse: function(xhr) {
+                onFileUploadResponse: function (xhr) {
                     var result = JSON.parse(xhr.responseText),
                         filename = result[this.settings.jsonFieldName];
 
@@ -88,6 +108,11 @@
                     }
                     return false;
                 }
+            });
+
+            $('#posted_at').datetimepicker({
+                locale: 'zh-cn',
+                format: 'YYYY-MM-DD HH:mm:ss'
             });
 
             $('#tags').tagsinput({tagClass: 'badge badge-primary'});
@@ -118,11 +143,12 @@
                         }
                     },
                     error: function (data) {
-                        if (data.status == 422) {
-                            var errors = data.responseJSON;
-                            for (var o in errors) {
+                        if (data.status === 422) {
+                            var res = data.responseJSON;
+                            console.log(res.errors);
+                            for (var o in res.errors) {
                                 swal({
-                                    title: errors[o][0],
+                                    title: res.errors[o],
                                     type: "error"
                                 });
                                 break;
@@ -145,4 +171,5 @@
 @section('style')
     <link href="{{asset('vendor/simplemde/simplemde.min.css')}}" rel="stylesheet">
     <link href="{{asset('vendor/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/pc-bootstrap4-datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet">
 @endsection
