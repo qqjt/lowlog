@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title'){{$post->title}} - {{config('app.name')}}@endsection
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
