@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="row mt-5">
+        <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         @if(count($paginatedPosts))
                             <ul class="list-unstyled mb-0">
                             @foreach($paginatedPosts as $post)
-                                <li class="media @if(!$loop->last) mb-3 @endif">
+                                <li class="media mb-3">
                                     <div class="media-body">
                                         <h4 class="media-heading"><a
                                                     href="{{route('post.show', ['hashid'=> $post->hashid])}}">{{$post->title}}</a>
