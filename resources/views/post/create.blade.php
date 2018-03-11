@@ -58,12 +58,12 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{asset('vendor/simplemde/simplemde.min.js')}}"></script>
-    <script src="{{asset('vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
-    <script src="{{asset('vendor/inline-attachment/inline-attachment.js')}}"></script>
-    <script src="{{asset('vendor/inline-attachment/codemirror-4.inline-attachment.js')}}"></script>
-    <script src="{{asset('vendor/moment/moment-with-locales.min.js')}}"></script>
-    <script src="{{asset('vendor/pc-bootstrap4-datetimepicker/js/bootstrap-datetimepicker.min.js')}}"></script>
+    <script src="{{cdn('vendor/simplemde/simplemde.min.js')}}"></script>
+    <script src="{{cdn('vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
+    <script src="{{cdn('vendor/inline-attachment/inline-attachment.js')}}"></script>
+    <script src="{{cdn('vendor/inline-attachment/codemirror-4.inline-attachment.js')}}"></script>
+    <script src="{{cdn('vendor/moment/moment-with-locales.min.js')}}"></script>
+    <script src="{{cdn('vendor/pc-bootstrap4-datetimepicker/js/bootstrap-datetimepicker.min.js')}}"></script>
     <script>
         $(document).ready(function () {
             var simplemde = new SimpleMDE({
@@ -155,7 +155,7 @@
     </script>
 @endsection
 @section('style')
-    <link href="{{asset('vendor/simplemde/simplemde.min.css')}}" rel="stylesheet">
-    <link href="{{asset('vendor/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet">
-    <link href="{{asset('vendor/pc-bootstrap4-datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet">
+    <link href="{{cdn('vendor/simplemde/simplemde.min.css')}}" rel="stylesheet">
+    <link href="{{cdn('vendor/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet">
+    <link href="{{cdn('vendor/pc-bootstrap4-datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet">
 @endsection

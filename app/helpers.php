@@ -11,3 +11,14 @@ if (!function_exists('escape_like')) {
         return str_replace($search, $replace, $string);
     }
 }
+
+if (!function_exists('cdn')) {
+    function cdn($uri)
+    {
+        $prefix = 'https://o68g2cu3w.qnssl.com';
+        $uri = str_replace('\\', '/', $uri);
+        while ($uri && $uri[0] === '/')
+            $uri = substr($uri, 1);
+        return $prefix . '/' . $uri;
+    }
+}

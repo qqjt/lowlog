@@ -11,8 +11,13 @@
     <title>@yield('title', config('app.name'))</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{asset('vendor/sweetalert/sweetalert.css')}}" rel="stylesheet">
+    <link href="{{ cdn('css/app.css') }}" rel="stylesheet">
+    <style>
+        img {
+            max-width: 100%;
+        }
+    </style>
+    <link href="{{cdn('vendor/sweetalert/sweetalert.css')}}" rel="stylesheet">
     @yield('style')
 </head>
 <body>
@@ -70,8 +75,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{asset('vendor/sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{ cdn('js/app.js') }}"></script>
+    <script src="{{cdn('vendor/sweetalert/sweetalert.min.js')}}"></script>
     <script src="https://use.fontawesome.com/b85589c87e.js"></script>
     @yield('script')
 </body>
