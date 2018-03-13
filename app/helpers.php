@@ -13,12 +13,15 @@ if (!function_exists('escape_like')) {
 }
 
 if (!function_exists('cdn')) {
-    function cdn($uri)
+    function cdn($url, $origin='https://low.bi', $prefix='https://o68g2cu3w.qnssl.com')
     {
-        $prefix = 'https://o68g2cu3w.qnssl.com';
-        $uri = str_replace('\\', '/', $uri);
-        while ($uri && $uri[0] === '/')
-            $uri = substr($uri, 1);
-        return $prefix . '/' . $uri;
+        if (App::environment('local'))
+            return $url;
+        if (strpos($origin, $url)===0)
+            return str_replace($origin, $prefix, $url);
+        if (strpos('//', $url) === 0)
+            return $url;
+        $url = ltrim($url, '/');
+        return $prefix . '/' . $url;
     }
 }

@@ -1,4 +1,17 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/vendor.js": "/js/vendor.js?id=ed708b77cd1b2284871b",
+    "/js/app.js": "/js/app.js?id=30cf1529496a3461ed25",
+    "/css/app.css": "/css/app.css?id=841deb50f13a6dcbbf82",
+    "/js/manifest.js": "/js/manifest.js?id=8dc6cd78606fe58b6628",
+    "/vendor/sweetalert/sweetalert.min.css": "/vendor/sweetalert/sweetalert.min.css?id=196c08c89f0c8a9b688a",
+    "/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.css": "/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.css?id=01a1887ade863ef0e094",
+    "/vendor/inline-attachment/inline-attachment.min.js": "/vendor/inline-attachment/inline-attachment.min.js?id=106ed6fe92a6631b9eb7",
+    "/vendor/inline-attachment/codemirror-4.inline-attachment.min.js": "/vendor/inline-attachment/codemirror-4.inline-attachment.min.js?id=bfa78bedea54f876fd76",
+    "/vendor/sweetalert/sweetalert.min.js": "/vendor/sweetalert/sweetalert.min.js?id=0068f44b0aa1b83fa767",
+    "/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js": "/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js?id=b0fd53fc5fbae7ce5304",
+    "/vendor/moment/moment-with-locales.min.js": "/vendor/moment/moment-with-locales.min.js?id=0d68ab26a28892ace9df",
+    "/vendor/pc-bootstrap4-datetimepicker/css/bootstrap-datetimepicker.min.css": "/vendor/pc-bootstrap4-datetimepicker/css/bootstrap-datetimepicker.min.css?id=3de4ca35dec8f1e1dcfb",
+    "/vendor/pc-bootstrap4-datetimepicker/js/bootstrap-datetimepicker.min.js": "/vendor/pc-bootstrap4-datetimepicker/js/bootstrap-datetimepicker.min.js?id=4fd48cb285dcbe6949bc",
+    "/vendor/simplemde/simplemde.min.css": "/vendor/simplemde/simplemde.min.css?id=b8697c785bbf0627fb05",
+    "/vendor/simplemde/simplemde.min.js": "/vendor/simplemde/simplemde.min.js?id=fd052f831c01ff10535c"
 }
