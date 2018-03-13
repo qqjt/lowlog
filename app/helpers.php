@@ -17,9 +17,9 @@ if (!function_exists('cdn')) {
     {
         if (App::environment('local'))
             return $url;
-        if (strpos($origin, $url)===0)
+        if (strpos($url, $origin)===0)
             return str_replace($origin, $prefix, $url);
-        if (strpos('//', $url) === 0)
+        if (strpos($url, '//') === 0)
             return $url;
         $url = ltrim($url, '/');
         return $prefix . '/' . $url;
