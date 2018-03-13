@@ -1,8 +1,8 @@
 {
-    "/js/vendor.js": "/js/vendor.js?id=ed708b77cd1b2284871b",
-    "/js/app.js": "/js/app.js?id=30cf1529496a3461ed25",
-    "/css/app.css": "/css/app.css?id=841deb50f13a6dcbbf82",
-    "/js/manifest.js": "/js/manifest.js?id=8dc6cd78606fe58b6628",
+    "/js/vendor.js": "/js/vendor.js?id=dfad47b6a47bde1d5eb3",
+    "/js/app.js": "/js/app.js?id=044665a60a298c43e805",
+    "/css/app.css": "/css/app.css?id=88eb6a4d72539e42f605",
+    "/js/manifest.js": "/js/manifest.js?id=2d315777967b6001bcf1",
     "/vendor/sweetalert/sweetalert.min.css": "/vendor/sweetalert/sweetalert.min.css?id=196c08c89f0c8a9b688a",
     "/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.css": "/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.css?id=01a1887ade863ef0e094",
     "/vendor/inline-attachment/inline-attachment.min.js": "/vendor/inline-attachment/inline-attachment.min.js?id=106ed6fe92a6631b9eb7",

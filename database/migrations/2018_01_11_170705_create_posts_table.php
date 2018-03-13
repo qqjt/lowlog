@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('excerpt')->nullable();
             $table->text('content');
             $table->text('html')->nullable();
+            $table->text('index')->nullable();
             $table->string('hashid', 20)->nullable();
             $table->timestamp('posted_at');
             $table->timestamps();

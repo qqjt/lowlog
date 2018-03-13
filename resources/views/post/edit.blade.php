@@ -65,12 +65,17 @@
         </div>
     </div>
 @endsection
+@section('style')
+    <link href="{{cdn(mix('vendor/simplemde/simplemde.min.css'))}}" rel="stylesheet">
+    <link href="{{cdn(mix('vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.css'))}}" rel="stylesheet">
+    <link href="{{cdn(mix('vendor/pc-bootstrap4-datetimepicker/css/bootstrap-datetimepicker.min.css'))}}" rel="stylesheet">
+@endsection
 @section('script')
     <script src="{{cdn(mix('vendor/simplemde/simplemde.min.js'))}}"></script>
     <script src="{{cdn(mix('vendor/simplemde/simplemde.min.js'))}}"></script>
     <script src="{{cdn(mix('vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js'))}}"></script>
-    <script src="{{cdn(mix('vendor/inline-attachment/inline-attachment.js'))}}"></script>
-    <script src="{{cdn(mix('vendor/inline-attachment/codemirror-4.inline-attachment.js'))}}"></script>
+    <script src="{{cdn(mix('vendor/inline-attachment/inline-attachment.min.js'))}}"></script>
+    <script src="{{cdn(mix('vendor/inline-attachment/codemirror-4.inline-attachment.min.js'))}}"></script>
     <script src="{{cdn(mix('vendor/moment/moment-with-locales.min.js'))}}"></script>
     <script src="{{cdn(mix('vendor/pc-bootstrap4-datetimepicker/js/bootstrap-datetimepicker.min.js'))}}"></script>
     <script>
@@ -166,9 +171,4 @@
             })
         })
     </script>
-@endsection
-@section('style')
-    <link href="{{cdn(mix('vendor/simplemde/simplemde.min.css'))}}" rel="stylesheet">
-    <link href="{{cdn(mix('vendor/bootstrap-tagsinput/bootstrap-tagsinput.css'))}}" rel="stylesheet">
-    <link href="{{cdn(mix('vendor/pc-bootstrap4-datetimepicker/css/bootstrap-datetimepicker.min.css'))}}" rel="stylesheet">
 @endsection
