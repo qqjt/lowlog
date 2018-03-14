@@ -27,7 +27,7 @@ if (!function_exists('cdn')) {
     }
 }
 
-if (!function_exists('str_head')) {
+if (!function_exists('str_starts_with')) {
     /**
      * @param $str
      * @param $needle
@@ -41,7 +41,7 @@ if (!function_exists('str_head')) {
     }
 }
 
-if (!function_exists('str_tail')) {
+if (!function_exists('str_ends_with')) {
     /**
      * @param $str
      * @param $needle
