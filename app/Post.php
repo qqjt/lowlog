@@ -37,6 +37,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Post withoutTrashed()
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
+ * @property string|null $nav
+ * @property \Carbon\Carbon|null $posted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereNav($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePostedAt($value)
  */
 class Post extends Model
 {

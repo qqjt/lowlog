@@ -5,6 +5,30 @@ use Baum\Node;
 
 /**
  * Category
+ *
+ * @property int $id
+ * @property int|null $parent_id
+ * @property int|null $lft
+ * @property int|null $rgt
+ * @property int|null $depth
+ * @property string $name
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Baum\Extensions\Eloquent\Collection|\App\Category[] $children
+ * @property-read \App\Category|null $parent
+ * @method static \Illuminate\Database\Eloquent\Builder|\Baum\Node limitDepth($limit)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereDepth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereLft($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereRgt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Baum\Node withoutNode($node)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Baum\Node withoutRoot()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Baum\Node withoutSelf()
+ * @mixin \Eloquent
  */
 class Category extends Node
 {
