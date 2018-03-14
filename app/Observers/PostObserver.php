@@ -41,6 +41,9 @@ class PostObserver
             $nav = substr($nav, 15, -20 );
         }
         $nav .= '</ul>';
+        if (str_starts_with($nav, '<ul><li><ul><li>') && str_ends_with($nav, '</li></ul></li></ul>') ) {
+            $nav = substr($nav, 8, -10);
+        }
         $post->nav = $nav;
     }
 

@@ -13,15 +13,44 @@ if (!function_exists('escape_like')) {
 }
 
 if (!function_exists('cdn')) {
-    function cdn($url, $origin='https://low.bi', $prefix='https://o68g2cu3w.qnssl.com')
+    /**
+     * @param $url
+     * @param string $prefix
+     * @return string
+     */
+    function cdn($url, $prefix = 'https://o68g2cu3w.qnssl.com')
     {
         if (App::environment('local'))
             return $url;
-        if (strpos($url, $origin)===0)
-            return str_replace($origin, $prefix, $url);
-        if (strpos($url, '//') === 0)
-            return $url;
         $url = ltrim($url, '/');
         return $prefix . '/' . $url;
+    }
+}
+
+if (!function_exists('str_head')) {
+    /**
+     * @param $str
+     * @param $needle
+     * @return bool
+     *
+     * Determine if $str starts with $needle
+     */
+    function str_starts_with($str, $needle)
+    {
+        return strpos($str, $needle) === 0;
+    }
+}
+
+if (!function_exists('str_tail')) {
+    /**
+     * @param $str
+     * @param $needle
+     * @return bool
+     *
+     * Determine if $str ends with $needle
+     */
+    function str_ends_with($str, $needle)
+    {
+        return strrpos($str, $needle) === strlen($str) - strlen($needle);
     }
 }

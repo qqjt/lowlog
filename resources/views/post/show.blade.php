@@ -26,6 +26,7 @@
                     </div>
                 </div>
                 <!-- Comments list ajax -->
+                @if($post->comments_count)
                 <div class="card mt-3">
                     <div class="card-header">
                         <div class="total">{{__("Comments: ")}}<b>{{$post->comments_count}}</b></div>
@@ -34,7 +35,7 @@
                         @include('comment.load')
                     </div>
                 </div>
-
+                @endif
                 <!--Comment Form-->
                 <div class="mt-3">
                     <form role="form">
