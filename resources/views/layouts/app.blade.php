@@ -32,6 +32,8 @@
                 <ul class="navbar-nav mr-auto">
                     <li><a class="nav-link" href="{{ route('about') }}"><i class="fa fa-user"></i>&nbsp;{{__("About")}}
                         </a></li>
+                    <li><a class="nav-link" href="{{ route('archive') }}"><i class="fa fa-archive"></i>&nbsp;{{__("Archive")}}
+                        </a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

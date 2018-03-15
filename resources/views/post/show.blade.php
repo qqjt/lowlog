@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
+            @if($post->toc)
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
@@ -13,6 +14,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
