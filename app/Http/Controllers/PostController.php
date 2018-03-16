@@ -14,7 +14,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Post::with(['author', 'tags'])->orderBy('posted_at', 'desc');
+        $query = Post::whereIsDraft(0)->with(['author', 'tags'])->orderBy('posted_at', 'desc');
         if ($request->has('tags')) {
             $tags = explode(',', $request->input('tags'));
             if (!empty($tags)) {
@@ -39,7 +39,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|string|max:191',
             'content' => 'required|string',
-            'posted_at' => 'required|date_format:Y-m-d H:i:s'
+            'posted_at' => 'nullable|date_format:Y-m-d H:i:s'
         ]);
         try {
             \DB::beginTransaction();
@@ -48,6 +48,8 @@ class PostController extends Controller
             $post->content = $request->input('content');
             $post->posted_at = $request->input('posted_at')?:Carbon::now()->format('Y-m-d H:i:s');
             $post->author_id = \Auth::user()->id;
+            if($request->has('is_draft'))
+                $post->is_draft = 1;
             $post->save();
             //handle tags
             if (!empty($request->input('tags'))) {
@@ -114,6 +116,8 @@ class PostController extends Controller
             $post->title = $request->input('title');
             $post->content = $request->input('content');
             $post->posted_at = $request->input('posted_at');
+            if($request->has('is_draft'))
+                $post->is_draft = 1;
             $post->save();
             $tagIds = [];
             if (!empty($request->input('tags'))) {

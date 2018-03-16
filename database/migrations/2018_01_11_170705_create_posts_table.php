@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->text('html')->nullable();
             $table->text('toc')->nullable();
+            $table->unsignedTinyInteger('is_draft')->default(0);
             $table->string('hashid', 20)->nullable();
             $table->timestamp('posted_at');
             $table->timestamps();

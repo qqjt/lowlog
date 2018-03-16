@@ -2,7 +2,8 @@
 Auth::routes();
 Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::get('/', 'PostController@index')->name('post.index');
+Route::get('/', 'PageController@index')->name('index');
+Route::get('/p', 'PostController@index')->name('post.index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', 'PageController@about')->name('about');
 Route::get('/archive', 'PageController@archive')->name('archive');

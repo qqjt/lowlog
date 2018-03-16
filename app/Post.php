@@ -41,6 +41,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon|null $posted_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereNav($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePostedAt($value)
+ * @property string|null $toc
+ * @property int|null $is_draft
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereIsDraft($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereToc($value)
  */
 class Post extends Model
 {

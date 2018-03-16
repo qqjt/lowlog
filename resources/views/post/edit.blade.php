@@ -56,6 +56,14 @@
                                     @endif
                                 </select>
                             </div>
+                            <div class="form-group{{ $errors->has('is_draft') ? ' has-error' : '' }}">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="is_draft"  value="1" id="is_draft" @if($post->is_draft) checked @endif>
+                                    <label class="form-check-label" for="is_draft">
+                                        {{__("Draft?")}}
+                                    </label>
+                                </div>
+                            </div>
                             <button id="save-post-btn" type="button" class="btn btn-primary">{{__('Submit')}}</button>
                             {!! csrf_field() !!}
                         </form>
