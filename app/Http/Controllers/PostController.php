@@ -25,6 +25,9 @@ class PostController extends Controller
                 }
             }
         }
+        if ($keyword = $request->get('s')) {
+            $query->search($keyword);
+        }
         $paginatedPosts = $query->paginate(10);
         return view('post.index', ['paginatedPosts' => $paginatedPosts]);
     }
