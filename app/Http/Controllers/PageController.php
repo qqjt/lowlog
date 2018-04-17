@@ -20,7 +20,7 @@ class PageController extends Controller
 
     public function archive()
     {
-        $posts = Post::select(['title', 'posted_at'])->withCount('comments')->orderBy('posted_at', 'desc')->get();
+        $posts = Post::select(['hashid', 'title', 'posted_at'])->withCount('comments')->orderBy('posted_at', 'desc')->get();
         $archive = [];
         foreach ($posts as $post) {
             $year = $post->posted_at->format('Y');
