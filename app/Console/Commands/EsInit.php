@@ -45,7 +45,7 @@ class EsInit extends Command
     {
         $url = config('scout.elasticsearch.hosts')[0] . ':9200/' . config('scout.elasticsearch.index');
         $client->put($url, [
-            'json' => [
+            \GuzzleHttp\RequestOptions::JSON => [
                 'settings' => [
                     'refresh_interval' => '5s',
                     'number_of_shards' => 1,

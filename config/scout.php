@@ -88,7 +88,7 @@ return [
         'secret' => env('ALGOLIA_SECRET', ''),
     ],
     'elasticsearch' => [
-        'index' => env('ELASTICSEARCH_INDEX', 'laravel'),
+        'index' => env('ELASTICSEARCH_INDEX', 'lowlog'),
         'hosts' => [
             env('ELASTICSEARCH_HOST', 'http://localhost'),
         ],

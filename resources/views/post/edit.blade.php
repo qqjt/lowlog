@@ -167,7 +167,7 @@
                             }
                         } else {
                             swal({
-                                title: "{{__('Post creating failed!')}}",
+                                title: "{{__('Post updating failed!')}}",
                                 type: "error"
                             });
                         }
