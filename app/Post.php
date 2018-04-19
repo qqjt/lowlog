@@ -49,6 +49,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use SoftDeletes;
+    const IN_DRAFT = 1;
+    const NOT_IN_DRAFT = 0;
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'posted_at'];
 

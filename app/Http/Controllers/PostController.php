@@ -14,7 +14,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Post::whereIsDraft(0)->with(['author', 'tags'])->orderBy('posted_at', 'desc');
+        $query = Post::whereIsDraft(Post::NOT_IN_DRAFT)->with(['author', 'tags'])->orderBy('posted_at', 'desc');
         if ($request->has('tags')) {
             $tags = explode(',', $request->input('tags'));
             if (!empty($tags)) {
@@ -83,7 +83,7 @@ class PostController extends Controller
 
     public function show($hashid)
     {
-        $post = Post::where('hashid', $hashid)->with(['comments' => function ($query) {
+        $post = Post::where('hashid', $hashid)->whereIsDraft(Post::NOT_IN_DRAFT)->with(['comments' => function ($query) {
             $query->orderBy('created_at');
         }])->withCount('comments')->first();
         if ($post === null)
