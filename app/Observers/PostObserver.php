@@ -16,7 +16,7 @@ class PostObserver
         $html = $markdown->convertMarkdownToHtml($post->content);
 
         //add anchor in html && generate TOC
-        $htmlDom = HtmlDomParser::str_get_html($html);
+        $htmlDom = HtmlDomParser::str_get_html($html, true, true, DEFAULT_TARGET_CHARSET, false);
         $headings = $htmlDom->find('h2,h3,h4,h5');
         $toc = '<ul>';
         $level = 2;
