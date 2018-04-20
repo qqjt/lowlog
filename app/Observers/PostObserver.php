@@ -14,7 +14,6 @@ class PostObserver
     {
         $markdown = new Markdown();
         $html = $markdown->convertMarkdownToHtml($post->content);
-
         //add anchor in html && generate TOC
         $htmlDom = HtmlDomParser::str_get_html($html, true, true, DEFAULT_TARGET_CHARSET, false);
         $headings = $htmlDom->find('h2,h3,h4,h5');
@@ -59,16 +58,8 @@ class PostObserver
         $post->excerpt = str_limit(strip_tags($post->html), 300);
     }
 
-    public function creating(Post $post)
-    {
-    }
-
     public function created(Post $post)
     {
-        Post::where('id', $post->id)->update(['hashid' => Hashids::connection('post')->encode($post->id)]);
-    }
-
-    public function updating(Post $post)
-    {
+        Post::whereId($post->id)->update(['hashid' => Hashids::connection('post')->encode($post->id)]);
     }
 }

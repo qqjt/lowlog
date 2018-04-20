@@ -8,16 +8,17 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    @yield('meta')
     <title>@yield('title', config('app.name'))</title>
 
     <!-- Styles -->
     <link href="{{ cdn(mix('css/app.css')) }}" rel="stylesheet">
-    <link href="{{cdn(mix('vendor/sweetalert/sweetalert.min.css'))}}" rel="stylesheet">
+    <link href="{{ cdn(mix('vendor/sweetalert/sweetalert.min.css')) }}" rel="stylesheet">
     @yield('style')
 </head>
 <body>
-<div id="app">
-    <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+<div id="app" class="pt-5">
+    <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -31,7 +32,8 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li>
-                        <a class="nav-link" href="{{ route('archive') }}"><i class="fa fa-archive"></i>&nbsp;{{__("Archive")}}
+                        <a class="nav-link" href="{{ route('archive') }}"><i
+                                    class="fa fa-archive"></i>&nbsp;{{__("Archive")}}
                         </a>
                     </li>
                     <li>
@@ -78,6 +80,13 @@
     <main class="py-4">
         @yield('content')
     </main>
+
+    <footer class="py-3">
+        <div class="container">
+            <p class="m-0 text-center"><i class="fa fa-copyright"></i> low.bi 2018 | <i class="fa fa-github"></i> <a href="https://github.com/qqjt/lowlog">lowlog</a></p>
+        </div>
+        <!-- /.container -->
+    </footer>
 </div>
 
 <!-- Scripts -->
