@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 /**
  * App\Post
@@ -49,6 +50,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use SoftDeletes;
+    use Searchable;
+
     const IN_DRAFT = 1;
     const NOT_IN_DRAFT = 0;
 
@@ -70,12 +73,19 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class)->withTimestamps();
     }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function shouldBeSearchable()
+    {
+        return $this->is_draft === 0;
     }
 }

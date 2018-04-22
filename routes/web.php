@@ -7,6 +7,8 @@ Route::get('/p', function(){$query = request()->all(); return redirect()->route(
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', 'PageController@about')->name('about');
 Route::get('/archive', 'PageController@archive')->name('archive');
+//search post
+Route::match(['get', 'post'], '/s', 'PostController@search')->name('post.search');
 
 Route::group(['prefix'=>'p'], function(){
     //add, edit, comment post
