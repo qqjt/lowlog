@@ -9,7 +9,7 @@
                     <div class="card-header">
                         {{__("TOC")}}
                     </div>
-                    <div class="card-body">
+                    <div class="card-body pl-0">
                         {!! $post->toc !!}
                     </div>
                 </div>
