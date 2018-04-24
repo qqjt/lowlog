@@ -97,7 +97,12 @@
                     "bold", "italic", "heading", "|", "quote", "code", "table",
                     "horizontal-rule", "unordered-list", "ordered-list", "|",
                     "link", "image", "|", "preview", "side-by-side", 'fullscreen'
-                ]
+                ],
+                autosave:{
+                    enabled: true,
+                    delay: 3,
+                    uniqueId: 'edit_{{$post->hashid}}'
+                }
             });
             inlineAttachment.editors.codemirror4.attach(simplemde.codemirror, {
                 uploadUrl: "{{route('image.upload')}}",

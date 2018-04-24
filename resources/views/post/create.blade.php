@@ -78,7 +78,12 @@
                 autoDownloadFontAwesome: false,
                 element: document.getElementById("content"),
                 spellChecker: false,
-                tabSize: 4
+                tabSize: 4,
+                autosave:{
+                    enabled: true,
+                    delay: 3,
+                    uniqueId: 'create_post'
+                }
             });
             inlineAttachment.editors.codemirror4.attach(simplemde.codemirror, {
                 uploadUrl: "{{route('image.upload')}}",

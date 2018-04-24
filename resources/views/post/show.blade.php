@@ -101,7 +101,12 @@
                 spellChecker: false,
                 tabSize: 4,
                 status: false,
-                autoDownloadFontAwesome: false
+                autoDownloadFontAwesome: false,
+                autosave:{
+                    enabled: true,
+                    delay: 3,
+                    uniqueId: 'comment_{{$post->hashid}}'
+                }
             });
             //Ajax load comments
             $('body').on('click', '.pagination a', function (e) {
