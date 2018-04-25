@@ -88,4 +88,9 @@ class Post extends Model
     {
         return $this->is_draft === 0;
     }
+
+    public function toSearchableArray()
+    {
+        return array_only($this->toArray(), ['id', 'title', 'html']);
+    }
 }
