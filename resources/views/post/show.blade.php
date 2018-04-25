@@ -83,6 +83,7 @@
 @endsection
 @section('style')
     <link href="{{cdn(mix('/vendor/simplemde/simplemde.min.css'))}}" rel="stylesheet">
+    <link href="{{cdn(mix("/vendor/prism/prism.css"))}}" rel="stylesheet">
     <style>
         .CodeMirror, .CodeMirror-scroll {
             min-height: 6em;
@@ -91,7 +92,8 @@
 @endsection
 
 @section('script')
-    <script src="{{cdn('/vendor/simplemde/simplemde.min.js')}}"></script>
+    <script src="{{cdn(mix('/vendor/simplemde/simplemde.min.js'))}}"></script>
+    <script src="{{cdn(mix("/vendor/prism/prism.js"))}}"></script>
     <script>
         var editors = [];
         $(document).ready(function () {

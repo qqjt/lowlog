@@ -1,5 +1,5 @@
 {
-    "/js/vendor.js": "/js/vendor.js?id=823a366763c131f98bfd",
+    "/js/vendor.js": "/js/vendor.js?id=1ec408960b94cd55c111",
     "/js/app.js": "/js/app.js?id=e2d1b11a98073918e62c",
     "/css/app.css": "/css/app.css?id=932d8b470463735339f8",
     "/js/manifest.js": "/js/manifest.js?id=40dcfff9d09d402daf38",
@@ -7,11 +7,15 @@
     "/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.css": "/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.css?id=01a1887ade863ef0e094",
     "/vendor/inline-attachment/inline-attachment.min.js": "/vendor/inline-attachment/inline-attachment.min.js?id=106ed6fe92a6631b9eb7",
     "/vendor/inline-attachment/codemirror-4.inline-attachment.min.js": "/vendor/inline-attachment/codemirror-4.inline-attachment.min.js?id=bfa78bedea54f876fd76",
-    "/vendor/sweetalert/sweetalert.min.js": "/vendor/sweetalert/sweetalert.min.js?id=0068f44b0aa1b83fa767",
+    "/vendor/prism/prism.min.css": "/vendor/prism/prism.min.css?id=dc62b5b3dac304d861e3",
+    "/vendor/prism/prism.min.js": "/vendor/prism/prism.min.js?id=dbdf644df4cefdc17248",
+    "/vendor/sweetalert/sweetalert.min.js": "/vendor/sweetalert/sweetalert.min.js?id=fe0f18cd4d5f1d03dd24",
     "/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js": "/vendor/bootstrap-tagsinput/bootstrap-tagsinput.min.js?id=b0fd53fc5fbae7ce5304",
     "/vendor/moment/moment-with-locales.min.js": "/vendor/moment/moment-with-locales.min.js?id=71d3684316e4ae65bf91",
     "/vendor/pc-bootstrap4-datetimepicker/css/bootstrap-datetimepicker.min.css": "/vendor/pc-bootstrap4-datetimepicker/css/bootstrap-datetimepicker.min.css?id=3de4ca35dec8f1e1dcfb",
     "/vendor/pc-bootstrap4-datetimepicker/js/bootstrap-datetimepicker.min.js": "/vendor/pc-bootstrap4-datetimepicker/js/bootstrap-datetimepicker.min.js?id=4fd48cb285dcbe6949bc",
     "/vendor/simplemde/simplemde.min.css": "/vendor/simplemde/simplemde.min.css?id=b8697c785bbf0627fb05",
-    "/vendor/simplemde/simplemde.min.js": "/vendor/simplemde/simplemde.min.js?id=fd052f831c01ff10535c"
+    "/vendor/simplemde/simplemde.min.js": "/vendor/simplemde/simplemde.min.js?id=fd052f831c01ff10535c",
+    "/vendor/prism/prism.css": "/vendor/prism/prism.css?id=dc62b5b3dac304d861e3",
+    "/vendor/prism/prism.js": "/vendor/prism/prism.js?id=dbdf644df4cefdc17248"
 }

@@ -13,7 +13,7 @@ let mix = require('laravel-mix');
 
 mix
     .js('resources/assets/js/app.js', 'public/js')
-    .extract(['bootstrap', 'jquery'])
+    .extract(['bootstrap', 'jquery', 'popper.js'])
     .sass('resources/assets/sass/app.scss', 'public/css')
     .copyDirectory('node_modules/simplemde/dist', 'public/vendor/simplemde')
     .copyDirectory('node_modules/bootstrap-tagsinput/dist', 'public/vendor/bootstrap-tagsinput')
@@ -26,6 +26,8 @@ mix
         'public/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css',
         'public/vendor/inline-attachment/inline-attachment.js',
         'public/vendor/inline-attachment/codemirror-4.inline-attachment.js',
+        'public/vendor/prism/prism.css',
+        'public/vendor/prism/prism.js'
     ])
     .version([
         'public/vendor/sweetalert/sweetalert.min.js',
@@ -37,4 +39,6 @@ mix
         'public/vendor/simplemde/simplemde.min.css',
         'public/vendor/simplemde/simplemde.min.js',
         'public/vendor/sweetalert/sweetalert.min.js',
+        'public/vendor/prism/prism.css',
+        'public/vendor/prism/prism.js'
     ]);

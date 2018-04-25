@@ -18,10 +18,8 @@
     "laravel-mix": "^2.0",
     "moment": "^2.21.0",
     "pc-bootstrap4-datetimepicker": "^4.17.50",
+    "popper.js": "^1.14.3",
     "simplemde": "^1.11.2",
-    "sweetalert": "^1.1.3"
-  },
-  "dependencies": {
-    "popper.js": "^1.14.3"
+    "sweetalert": "^2.1.0"
   }
 }
