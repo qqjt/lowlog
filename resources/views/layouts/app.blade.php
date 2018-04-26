@@ -40,6 +40,11 @@
                         <a class="nav-link" href="{{ route('about') }}"><i class="fa fa-user"></i>&nbsp;{{__("About")}}
                         </a>
                     </li>
+                    <li>
+                        <form method="get" action="{{route('post.search')}}" class="form-inline my-2 my-md-0">
+                            <input name="q" class="form-control" type="text" placeholder="{{_("Search")}}">
+                        </form>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
