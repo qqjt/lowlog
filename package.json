@@ -20,6 +20,9 @@
     "pc-bootstrap4-datetimepicker": "^4.17.50",
     "popper.js": "^1.14.3",
     "simplemde": "^1.11.2",
-    "sweetalert": "^2.1.0"
+    "sweetalert": "^2.1.0",
+    "font-awesome": "^4.7.0"
+  },
+  "dependencies": {
   }
 }

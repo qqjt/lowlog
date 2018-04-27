@@ -21,6 +21,8 @@ mix
     .copyDirectory('node_modules/inline-attachment/src', 'public/vendor/inline-attachment')
     .copyDirectory('node_modules/pc-bootstrap4-datetimepicker/build', 'public/vendor/pc-bootstrap4-datetimepicker')
     .copyDirectory('node_modules/moment/min', 'public/vendor/moment')
+    .copyDirectory('node_modules/font-awesome/css', 'public/vendor/font-awesome/css')
+    .copyDirectory('node_modules/font-awesome/fonts', 'public/vendor/font-awesome/fonts')
     .minify([
         'public/vendor/sweetalert/sweetalert.css',
         'public/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css',
@@ -40,5 +42,6 @@ mix
         'public/vendor/simplemde/simplemde.min.js',
         'public/vendor/sweetalert/sweetalert.min.js',
         'public/vendor/prism/prism.css',
-        'public/vendor/prism/prism.js'
+        'public/vendor/prism/prism.js',
+        'public/vendor/font-awesome/css/font-awesome.min.css'
     ]);

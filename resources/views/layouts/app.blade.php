@@ -14,6 +14,7 @@
     <!-- Styles -->
     <link href="{{ cdn(mix('css/app.css')) }}" rel="stylesheet">
     <link href="{{ cdn(mix('vendor/sweetalert/sweetalert.min.css')) }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{cdn(mix('/vendor/font-awesome/css/font-awesome.min.css'))}}">
     @yield('style')
 </head>
 <body>
@@ -99,7 +100,6 @@
 <script src="{{ cdn(mix('js/vendor.js')) }}"></script>
 <script src="{{ cdn(mix('js/app.js')) }}"></script>
 <script src="{{ cdn(mix('/vendor/sweetalert/sweetalert.min.js'))}}"></script>
-<script src="https://use.fontawesome.com/b85589c87e.js"></script>
 @yield('script')
 </body>
 </html>

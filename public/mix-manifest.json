@@ -17,5 +17,6 @@
     "/vendor/simplemde/simplemde.min.css": "/vendor/simplemde/simplemde.min.css?id=b8697c785bbf0627fb05",
     "/vendor/simplemde/simplemde.min.js": "/vendor/simplemde/simplemde.min.js?id=fd052f831c01ff10535c",
     "/vendor/prism/prism.css": "/vendor/prism/prism.css?id=dc62b5b3dac304d861e3",
-    "/vendor/prism/prism.js": "/vendor/prism/prism.js?id=dbdf644df4cefdc17248"
+    "/vendor/prism/prism.js": "/vendor/prism/prism.js?id=dbdf644df4cefdc17248",
+    "/vendor/font-awesome/css/font-awesome.min.css": "/vendor/font-awesome/css/font-awesome.min.css?id=269550530cc127b6aa5a"
 }
