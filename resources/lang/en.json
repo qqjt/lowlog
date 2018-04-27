@@ -22,7 +22,6 @@
     "Comment failed.": "Comment failed",
     "Comment saved.": "Comment saved.",
     "Comments could not be loaded.": "Comments could not be loaded",
-    "Comments:": "Comments:",
     "Confirm Password": "Confirm Password",
     "Draft?": "Draft?",
     "E-Mail Address": "E-Mail Address",
@@ -33,7 +32,6 @@
     "Home": "Home",
     "http(s):\/\/": "http(s):\/\/",
     "My posts": "My posts",
-    "Name:": "Name:",
     "New": "New",
     "Password": "Password",
     "Post datetime": "Post datetime",
@@ -41,5 +39,12 @@
     "Posted at": "Posted at",
     "Remember Me": "Remember Me",
     "TOC": "TOC",
-    "You can only upload image with extensions:": "You can only upload image with extensions:"
+    "You can only upload image with extensions:": "You can only upload image with extensions:",
+    "Email Address:": "Email Address:",
+    "Website:": "Website:",
+    "Search": "Search",
+    "Post updating failed!": "Post updating failed!",
+    "Name": "Name",
+    "Name:": "Name:",
+    "Comments:": "Comments:"
 }

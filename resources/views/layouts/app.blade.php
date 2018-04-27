@@ -41,20 +41,31 @@
                         <a class="nav-link" href="{{ route('about') }}"><i class="fa fa-user"></i>&nbsp;{{__("About")}}
                         </a>
                     </li>
+                </ul>
+
+                <ul class="navbar-nav m-auto">
                     <li>
                         <form method="get" action="{{route('post.search')}}" class="form-inline my-2 my-md-0">
-                            <input name="q" class="form-control" type="text" placeholder="{{_("Search")}}">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="{{__("Search")}}" aria-label="{{__("Search")}}" name="q">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
                         </form>
                     </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-
                     <!-- Authentication Links -->
                     @guest
-                        <li><a class="nav-link" href="{{ route('login') }}">{{__("Login")}}</a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}">{{__("Register")}}</a></li>
+                        <li><a class="nav-link" href="{{ route('login') }}"><i class="fa fa-sign-in"
+                                                                               aria-hidden="true"></i>&nbsp;{{__("Login")}}
+                            </a></li>
+                        <li><a class="nav-link" href="{{ route('register') }}"><i class="fa fa-user-plus"
+                                                                                  aria-hidden="true"></i>&nbsp;{{__("Register")}}
+                            </a></li>
                     @else
                         <li><a class="nav-link" href="{{ route('post.create') }}"><i
                                         class="fa fa-plus"></i>&nbsp;{{__("New")}}</a></li>
@@ -89,7 +100,8 @@
 
     <footer class="py-3">
         <div class="container">
-            <p class="m-0 text-center"><i class="fa fa-copyright"></i> low.bi 2018 | <i class="fa fa-github"></i> <a href="https://github.com/qqjt/lowlog">lowlog</a></p>
+            <p class="m-0 text-center"><i class="fa fa-copyright"></i> low.bi 2018 | <i class="fa fa-github"></i> <a
+                        href="https://github.com/qqjt/lowlog">lowlog</a></p>
         </div>
         <!-- /.container -->
     </footer>
