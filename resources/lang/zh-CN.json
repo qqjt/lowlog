@@ -33,7 +33,6 @@
     "Draft?": "存为草稿？",
     "TOC": "内容列表",
     "Edit": "编辑",
-    "Email address": "电子邮件",
     "http(s):\/\/": "http(s)",
     "Comment": "评论",
     "Add a comment": "添加评论",
@@ -42,7 +41,11 @@
     "You can only upload image with extensions:": "你只能上传以下附件的图片：",
     "Search": "搜索",
     "Post updating failed!": "文章更新失败！",
+    "Search results for :q:": ":q 的搜索结果：",
+    "Name": "姓名",
     "Comments: ": "评论：",
-    "Email Address: ": "电子邮件：",
-    "Website: ": "网址："
+    "Name:": "姓名：",
+    "Email Address:": "电子邮件：",
+    "Email address": "电子邮件",
+    "Website:": "网址："
 }

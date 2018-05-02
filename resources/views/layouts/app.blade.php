@@ -47,7 +47,7 @@
                     <li>
                         <form method="get" action="{{route('post.search')}}" class="form-inline my-2 my-md-0">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="{{__("Search")}}" aria-label="{{__("Search")}}" name="q">
+                                <input type="text" class="form-control" placeholder="{{__("Search")}}" aria-label="{{__("Search")}}" name="q" value="{{request('q')}}">
                                 <div class="input-group-append">
                                     <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
                                 </div>

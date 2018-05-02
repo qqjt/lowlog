@@ -54,15 +54,15 @@
                         {!! csrf_field() !!}
                         @if(Auth::guest())
                             <div class="form-group">
-                                <label for="author_name">{{__("Name: ")}}</label>
+                                <label for="author_name">{{__("Name:")}}</label>
                                 <input type="text" class="form-control" name="author_name" id="author_name" placeholder="{{__("Name")}}">
                             </div>
                             <div class="form-group">
-                                <label for="email">{{__("Email Address: ")}}</label>
+                                <label for="email">{{__("Email Address:")}}</label>
                                 <input type="text" class="form-control" name="email" id="email" placeholder="{{__("Email address")}}">
                             </div>
                             <div class="form-group">
-                                <label for="url">{{__("Website: ")}}</label>
+                                <label for="url">{{__("Website:")}}</label>
                                 <input type="text" class="form-control" name="url" id="url" placeholder="{{__("http(s)://")}}">
                             </div>
                         @endif

@@ -4,6 +4,11 @@
         <div class="row justify-content-center">
             <div class="col-md-9">
                 <div class="card">
+                    @if(request()->has('q'))
+                    <div class="card-header">
+                        {{__("Search results for :q:", ['q'=>request('q')])}}
+                    </div>
+                    @endif
                     <div class="card-body">
                         @if(count($paginatedPosts))
                             <ul class="list-unstyled mb-0">

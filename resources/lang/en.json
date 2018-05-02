@@ -26,7 +26,6 @@
     "Draft?": "Draft?",
     "E-Mail Address": "E-Mail Address",
     "Edit": "Edit",
-    "Email address": "Email address",
     "Error while uploading file": "Error while uploading file",
     "Forgot Your Password?": "Forgot Your Password?",
     "Home": "Home",
@@ -40,11 +39,13 @@
     "Remember Me": "Remember Me",
     "TOC": "TOC",
     "You can only upload image with extensions:": "You can only upload image with extensions:",
-    "Email Address:": "Email Address:",
-    "Website:": "Website:",
     "Search": "Search",
     "Post updating failed!": "Post updating failed!",
+    "Search results for :q:": "Search reasults for :q:",
     "Name": "Name",
     "Name:": "Name:",
-    "Comments:": "Comments:"
+    "Email address": "Email address",
+    "Email Address:": "Email Address:",
+    "Comments:": "Comments:",
+    "Website:": "Website:"
 }
