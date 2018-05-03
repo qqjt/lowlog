@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="app" class="pt-5">
-    <nav class="navbar navbar-expand-md navbar-light bg-light box-shadow fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -32,19 +32,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    <li>
+                    <li class="nav-item {{active_class(if_route('archive'))}}">
                         <a class="nav-link" href="{{ route('archive') }}"><i
                                     class="fa fa-archive"></i>&nbsp;{{__("Archive")}}
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item {{active_class(if_route('about'))}}">
                         <a class="nav-link" href="{{ route('about') }}"><i class="fa fa-user"></i>&nbsp;{{__("About")}}
                         </a>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav m-auto">
-                    <li>
+                    <li class="nav-item">
                         <form method="get" action="{{route('post.search')}}" class="form-inline my-2 my-md-0">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="{{__("Search")}}" aria-label="{{__("Search")}}" name="q" value="{{request('q')}}">
@@ -60,14 +60,14 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
-                        <li><a class="nav-link" href="{{ route('login') }}"><i class="fa fa-sign-in"
+                        <li class="{{active_class(if_route('login'))}}"><a class="nav-link" href="{{ route('login') }}"><i class="fa fa-sign-in"
                                                                                aria-hidden="true"></i>&nbsp;{{__("Login")}}
                             </a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}"><i class="fa fa-user-plus"
+                        <li class="{{active_class(if_route('register'))}}"><a class="nav-link" href="{{ route('register') }}"><i class="fa fa-user-plus"
                                                                                   aria-hidden="true"></i>&nbsp;{{__("Register")}}
                             </a></li>
                     @else
-                        <li><a class="nav-link" href="{{ route('post.create') }}"><i
+                        <li class="{{active_class(if_route('post.create'))}}"><a class="nav-link" href="{{ route('post.create') }}"><i
                                         class="fa fa-plus"></i>&nbsp;{{__("New")}}</a></li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
