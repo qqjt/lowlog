@@ -17,7 +17,7 @@ class CommentController extends Controller
         $this->validate($request, [
             'author_name'=>'string|max:191',
             'email'=>'email|max:191',
-            'url'=>'email|max:191',
+            'url'=>'string|max:191',
             'content'=>'required|string',
         ]);
         $comment = new Comment();

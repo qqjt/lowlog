@@ -144,7 +144,7 @@
                         if (res.code === 0) {
                             swal({
                                 title: res.message
-                            }, function () {
+                            }).then((value) => {
                                 location.reload();
                             });
                         } else {

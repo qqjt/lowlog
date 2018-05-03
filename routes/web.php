@@ -17,8 +17,9 @@ Route::group(['prefix'=>'p'], function(){
         Route::post('/create', 'PostController@store')->name('post.store')->middleware('can:create,App\Post');
         Route::post('/{post}/edit', 'PostController@update')->name('post.update')->middleware('can:update,post');
         Route::get('/{post}/edit', 'PostController@edit')->name('post.edit')->middleware('can:update,post');
-        Route::post('/{post}/comment', 'CommentController@store')->name('comment.store');
     });
+    //add comment
+    Route::post('/{post}/comment', 'CommentController@store')->name('comment.store');
     //show post, load comments
     Route::get('/{post}', 'PostController@show')->name('post.show');
     Route::get('/{post}/c', 'CommentController@load')->name('comment.load');

@@ -19,18 +19,6 @@ class CommentObserver
     {
         //handle comment hashid
         Comment::where('id', $comment->id)->update(['hashid'=>Hashids::connection('comment')->encode($comment->id)]);
-        //associate comment author, create new if not existed.
-        if (!$comment->author_id) {
-            $author = User::where('email', $comment->email)->first();
-            if ($author===null) {
-                $comment->author_id = $author->id;
-                $comment->save();
-            } else {
-                $author = new User();
-                $author->email = $comment->email;
-                $author->save();
-            }
-        }
     }
 
     public function updating(Comment $comment)
