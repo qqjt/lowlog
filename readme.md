@@ -21,7 +21,7 @@ Modify the .env file, migrate database:
 and finally run a custom artisan command:
 `php artisan blog:init`
 ### Configure nginx
-sample nginx conf: [nginx-vhost.conf](/qqjt/lowlog/blob/master/nginx-vhost.conf)
+sample nginx conf: [nginx-vhost.conf](/nginx-vhost.conf)
 ### Install elasticsearch for search
 Follow the instructions on [elastic](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html) website, install jdk first.
 install [ik-analysis](https://github.com/medcl/elasticsearch-analysis-ik) plugin if necessary.
