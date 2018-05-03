@@ -10,9 +10,10 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.1.1",
     "bootstrap-tagsinput": "^0.7.1",
     "cross-env": "^5.1",
+    "font-awesome": "^4.7.0",
     "inline-attachment": "^2.0.3",
     "jquery": "^3.2",
     "laravel-mix": "^2.0",
@@ -20,9 +21,7 @@
     "pc-bootstrap4-datetimepicker": "^4.17.50",
     "popper.js": "^1.14.3",
     "simplemde": "^1.11.2",
-    "sweetalert": "^2.1.0",
-    "font-awesome": "^4.7.0"
+    "sweetalert": "^2.1.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

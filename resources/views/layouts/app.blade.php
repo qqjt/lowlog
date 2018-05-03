@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="app" class="pt-5">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -49,7 +49,7 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="{{__("Search")}}" aria-label="{{__("Search")}}" name="q" value="{{request('q')}}">
                                 <div class="input-group-append">
-                                    <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                                    <button class="btn btn-primary btn-outline-light" type="submit"><i class="fa fa-search"></i></button>
                                 </div>
                             </div>
                         </form>
