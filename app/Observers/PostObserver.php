@@ -17,7 +17,7 @@ class PostObserver
         //add anchor in html && generate TOC
         $htmlDom = HtmlDomParser::str_get_html($html, true, true, DEFAULT_TARGET_CHARSET, false);
         $headings = $htmlDom->find('h2,h3,h4,h5');
-        $toc = '<ul>';
+        $toc = '<ul class="section-nav">';
         $level = 2;
         $curLevel = 2;
         foreach ($headings as $key => $heading) {
@@ -28,15 +28,15 @@ class PostObserver
             if ($curLevel == $level) {
                 if ($key != 0)
                     $toc .= '</li>';
-                $toc .= '<li><a href="#' . $anchor . '">' . $heading->innertext() . '</a>';
+                $toc .= '<li class="toc-entry toc-h' . $curLevel . '"><a href="#' . $anchor . '">' . $heading->innertext() . '</a>';
             } elseif ($curLevel > $level) {
                 $toc .= '</li><ul>';
                 $level += 1;
                 while ($curLevel > $level) {
-                    $toc .= '<li><ul>';
+                    $toc .= '<li class="toc-entry toc-h' . $curLevel . '"><ul>';
                     $level += 1;
                 }
-                $toc .= '<li><a href="#' . $anchor . '">' . $heading->innertext() . '</a>';
+                $toc .= '<li class="toc-entry toc-h' . $curLevel . '"><a href="#' . $anchor . '">' . $heading->innertext() . '</a>';
             } else {
                 $toc .= '</li></ul>';
                 $level -= 1;
@@ -44,7 +44,7 @@ class PostObserver
                     $toc .= '</li></ul>';
                     $level -= 1;
                 }
-                $toc .= '<li><a href="#' . $anchor . '">' . $heading->innertext() . '</a>';
+                $toc .= '<li class="toc-entry toc-h' . $curLevel . '"><a href="#' . $anchor . '">' . $heading->innertext() . '</a>';
             }
         }
         while ($curLevel > $level) {

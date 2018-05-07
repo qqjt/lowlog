@@ -18,7 +18,7 @@
     @yield('style')
 </head>
 <body>
-<div id="app" class="pt-5">
+<div class="pt-5">
     <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -47,9 +47,11 @@
                     <li class="nav-item">
                         <form method="get" action="{{route('post.search')}}" class="form-inline my-2 my-md-0">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="{{__("Search")}}" aria-label="{{__("Search")}}" name="q" value="{{request('q')}}">
+                                <input type="text" class="form-control" placeholder="{{__("Search")}}"
+                                       aria-label="{{__("Search")}}" name="q" value="{{request('q')}}">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary btn-outline-light" type="submit"><i class="fa fa-search"></i></button>
+                                    <button class="btn btn-primary btn-outline-light" type="submit"><i
+                                                class="fa fa-search"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -60,14 +62,18 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
-                        <li class="{{active_class(if_route('login'))}}"><a class="nav-link" href="{{ route('login') }}"><i class="fa fa-sign-in"
-                                                                               aria-hidden="true"></i>&nbsp;{{__("Login")}}
+                        <li class="{{active_class(if_route('login'))}}"><a class="nav-link" href="{{ route('login') }}"><i
+                                        class="fa fa-sign-in"
+                                        aria-hidden="true"></i>&nbsp;{{__("Login")}}
                             </a></li>
-                        <li class="{{active_class(if_route('register'))}}"><a class="nav-link" href="{{ route('register') }}"><i class="fa fa-user-plus"
-                                                                                  aria-hidden="true"></i>&nbsp;{{__("Register")}}
+                        <li class="{{active_class(if_route('register'))}}"><a class="nav-link"
+                                                                              href="{{ route('register') }}"><i
+                                        class="fa fa-user-plus"
+                                        aria-hidden="true"></i>&nbsp;{{__("Register")}}
                             </a></li>
                     @else
-                        <li class="{{active_class(if_route('post.create'))}}"><a class="nav-link" href="{{ route('post.create') }}"><i
+                        <li class="{{active_class(if_route('post.create'))}}"><a class="nav-link"
+                                                                                 href="{{ route('post.create') }}"><i
                                         class="fa fa-plus"></i>&nbsp;{{__("New")}}</a></li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

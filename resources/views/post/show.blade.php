@@ -1,84 +1,66 @@
-@extends('layouts.app')
+@extends('layouts.two')
 @section('title'){{$post->title}} - {{config('app.name')}}@endsection
+@section('sidebar')
+    <nav class="collapse bd-links">
+        {!! $post->toc !!}
+    </nav>
+@endsection
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            @if($post->toc)
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        {{__("TOC")}}
-                    </div>
-                    <div class="card-body pl-0">
-                        {!! $post->toc !!}
-                    </div>
-                </div>
+    <h1 class="bd-title">
+        <a href="{{route('post.show', ['hashid'=>$post->hashid])}}">{{$post->title}}</a>
+    </h1>
+    <ul class="list-inline list-unstyled">
+        <li><span><i class="fa fa-calendar"></i>&nbsp;{{(string)$post->posted_at}} </span></li>
+    </ul>
+    {!! $post->html !!}
+    <div class="">
+        <a href="{{route('post.edit', [$post])}}">
+            <button type="button" class="btn btn-primary"><i
+                        class="fa fa-edit"></i>&nbsp;{{__("Edit")}}</button>
+        </a>
+    </div>
+    <!-- Comments list ajax -->
+    @if($post->comments_count)
+        <div class="card mt-3">
+            <div class="card-header">
+                <div class="total">{{__("Comments: ")}}<b>{{$post->comments_count}}</b></div>
             </div>
-            @endif
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">
-                        <h1>
-                            <a href="{{route('post.show', ['hashid'=>$post->hashid])}}">{{$post->title}}</a>
-                        </h1>
-                        <ul class="list-inline list-unstyled">
-                            <li><span><i class="fa fa-calendar"></i>&nbsp;{{(string)$post->posted_at}} </span></li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        {!! $post->html !!}
-                    </div>
-                    <div class="card-footer">
-                        <div class="pull-right">
-                            <a href="{{route('post.edit', [$post])}}">
-                                <button type="button" class="btn btn-primary"><i
-                                            class="fa fa-edit"></i>&nbsp;{{__("Edit")}}</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Comments list ajax -->
-                @if($post->comments_count)
-                <div class="card mt-3">
-                    <div class="card-header">
-                        <div class="total">{{__("Comments: ")}}<b>{{$post->comments_count}}</b></div>
-                    </div>
-                    <div id="comments" class="card-body">
-                        @include('comment.load')
-                    </div>
-                </div>
-                @endif
-                <!--Comment Form-->
-                <div class="mt-3">
-                    <form role="form">
-                        {!! csrf_field() !!}
-                        @if(Auth::guest())
-                            <div class="form-group">
-                                <label for="author_name">{{__("Name:")}}</label>
-                                <input type="text" class="form-control" name="author_name" id="author_name" placeholder="{{__("Name")}}">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">{{__("Email Address:")}}</label>
-                                <input type="text" class="form-control" name="email" id="email" placeholder="{{__("Email address")}}">
-                            </div>
-                            <div class="form-group">
-                                <label for="url">{{__("Website:")}}</label>
-                                <input type="text" class="form-control" name="url" id="url" placeholder="{{__("http(s)://")}}">
-                            </div>
-                        @endif
-                        <div class="form-group">
-                            <textarea title="{{__("Comment")}}" placeholder="{{__("Add a comment")}}" id="comment"
-                                      class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-raised save-comment" data-editor="comment"><i
-                                    class="fa fa-reply"></i>&nbsp;{{__("Comment")}}
-                        </button>
-                        <input type="hidden" name="content">
-                        <input type="hidden" name="post_hashid" value="{{$post->hashid}}">
-                    </form>
-                </div>
+            <div id="comments" class="card-body">
+                @include('comment.load')
             </div>
         </div>
+    @endif
+    <!--Comment Form-->
+    <div class="mt-3">
+        <form role="form">
+            {!! csrf_field() !!}
+            @if(Auth::guest())
+                <div class="form-group">
+                    <label for="author_name">{{__("Name:")}}</label>
+                    <input type="text" class="form-control" name="author_name" id="author_name"
+                           placeholder="{{__("Name")}}">
+                </div>
+                <div class="form-group">
+                    <label for="email">{{__("Email Address:")}}</label>
+                    <input type="text" class="form-control" name="email" id="email"
+                           placeholder="{{__("Email address")}}">
+                </div>
+                <div class="form-group">
+                    <label for="url">{{__("Website:")}}</label>
+                    <input type="text" class="form-control" name="url" id="url"
+                           placeholder="{{__("http(s)://")}}">
+                </div>
+            @endif
+            <div class="form-group">
+                            <textarea title="{{__("Comment")}}" placeholder="{{__("Add a comment")}}" id="comment"
+                                      class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-raised save-comment" data-editor="comment"><i
+                        class="fa fa-reply"></i>&nbsp;{{__("Comment")}}
+            </button>
+            <input type="hidden" name="content">
+            <input type="hidden" name="post_hashid" value="{{$post->hashid}}">
+        </form>
     </div>
 @endsection
 @section('style')
@@ -104,7 +86,7 @@
                 tabSize: 4,
                 status: false,
                 autoDownloadFontAwesome: false,
-                autosave:{
+                autosave: {
                     enabled: true,
                     delay: 3,
                     uniqueId: 'comment_{{$post->hashid}}'
