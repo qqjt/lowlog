@@ -12,8 +12,8 @@
     <title>@yield('title', config('app.name'))</title>
 
     <!-- Styles -->
-    <link href="{{ cdn(mix('css/app.css')) }}" rel="stylesheet">
-    <link href="{{ cdn(mix('vendor/sweetalert/sweetalert.min.css')) }}" rel="stylesheet">
+    <link href="{{ cdn(mix('/css/app.css')) }}" rel="stylesheet">
+    <link href="{{ cdn(mix('/vendor/sweetalert/sweetalert.min.css')) }}" rel="stylesheet">
     <link rel="stylesheet" href="{{cdn(mix('/vendor/font-awesome/css/font-awesome.min.css'))}}">
     @yield('style')
 </head>
@@ -116,9 +116,9 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ cdn(mix('js/manifest.js')) }}"></script>
-<script src="{{ cdn(mix('js/vendor.js')) }}"></script>
-<script src="{{ cdn(mix('js/app.js')) }}"></script>
+<script src="{{ cdn(mix('/js/manifest.js')) }}"></script>
+<script src="{{ cdn(mix('/js/vendor.js')) }}"></script>
+<script src="{{ cdn(mix('/js/app.js')) }}"></script>
 <script src="{{ cdn(mix('/vendor/sweetalert/sweetalert.min.js'))}}"></script>
 @yield('script')
 </body>

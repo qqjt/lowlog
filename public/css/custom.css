@@ -1,6 +1,6 @@
 /*navbar*/
 .bd-navbar {
-    min-height: 4rem;
+    min-height: 3.5rem;
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(0, 0, 0, .1)
 }
 
@@ -176,8 +176,8 @@
 
 .bd-content > h2[id]::before, .bd-content > h3[id]::before, .bd-content > h4[id]::before {
     display: block;
-    height: 6rem;
-    margin-top: -6rem;
+    height: 4rem;
+    margin-top: -4rem;
     visibility: hidden;
     content: ""
 }

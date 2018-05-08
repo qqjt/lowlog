@@ -29,7 +29,8 @@ mix
         'public/vendor/inline-attachment/inline-attachment.js',
         'public/vendor/inline-attachment/codemirror-4.inline-attachment.js',
         'public/vendor/prism/prism.css',
-        'public/vendor/prism/prism.js'
+        'public/vendor/prism/prism.js',
+        'public/css/custom.css',
     ])
     .version([
         'public/vendor/sweetalert/sweetalert.min.js',
