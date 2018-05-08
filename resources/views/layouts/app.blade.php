@@ -16,6 +16,7 @@
     <link href="{{ cdn(mix('/vendor/sweetalert/sweetalert.min.css')) }}" rel="stylesheet">
     <link rel="stylesheet" href="{{cdn(mix('/vendor/font-awesome/css/font-awesome.min.css'))}}">
     @yield('style')
+    @include('elements.analytics')
 </head>
 <body>
 <div class="pt-5">
