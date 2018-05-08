@@ -13,11 +13,15 @@
         <li><span><i class="fa fa-calendar"></i>&nbsp;{{(string)$post->posted_at}} </span></li>
     </ul>
     {!! $post->html !!}
-    <div class="">
-        <a href="{{route('post.edit', [$post])}}">
-            <button type="button" class="btn btn-primary"><i
-                        class="fa fa-edit"></i>&nbsp;{{__("Edit")}}</button>
-        </a>
+    <div class="clearfix">
+        <div class="float-right">
+            @can('update', $post)
+                <a href="{{route('post.edit', [$post])}}">
+                    <button type="button" class="btn btn-primary"><i
+                                class="fa fa-edit"></i>&nbsp;{{__("Edit")}}</button>
+                </a>
+            @endcan
+        </div>
     </div>
     <!-- Comments list ajax -->
     @if($post->comments_count)

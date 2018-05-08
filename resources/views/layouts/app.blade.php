@@ -72,9 +72,11 @@
                                         aria-hidden="true"></i>&nbsp;{{__("Register")}}
                             </a></li>
                     @else
+                        @can('create', \App\Post::class)
                         <li class="{{active_class(if_route('post.create'))}}"><a class="nav-link"
                                                                                  href="{{ route('post.create') }}"><i
                                         class="fa fa-plus"></i>&nbsp;{{__("New")}}</a></li>
+                        @endcan
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

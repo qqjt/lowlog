@@ -4,7 +4,7 @@
             <a class="mr-3" href="">
                 <img class="media-object img-thumbnail rounded-circle"
                      alt="{{$comment->author_name}}"
-                     src="{{ Gravatar::src($comment->email) }}">
+                     src="{{ proxy_gravatar(Gravatar::src($comment->email)) }}">
             </a>
             <div class="media-body">
                 <div class="media-heading">

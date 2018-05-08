@@ -54,3 +54,18 @@ if (!function_exists('str_ends_with')) {
         return strrpos($str, $needle) === strlen($str) - strlen($needle);
     }
 }
+
+if (!function_exists('proxy_gravatar')) {
+    /**
+     * @param $str
+     * @param $prefix
+     * @return mixed
+     *
+     * replace gravatar url with custom proxy
+     */
+    function proxy_gravatar($str, $prefix='https://gravatar.low.bi')
+    {
+        $pattern = '/(.*)http(s*):\/\/[A-z]+.gravatar.com(.*)/';
+        return  preg_replace($pattern, '$1'.$prefix.'$3', $str);
+    }
+}
