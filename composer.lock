@@ -4,8 +4,124 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b0b8a9c9678335c0de0cbc740c5d97b",
+    "content-hash": "84b179dd3593d9bc0edc7bae3e5c93ab",
     "packages": [
+        {
+            "name": "barryvdh/laravel-httpcache",
+            "version": "v0.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-httpcache.git",
+                "reference": "ff09bf7405371941acec2ffaab852353b7fb315b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/barryvdh/laravel-httpcache/ff09bf7405371941acec2ffaab852353b7fb315b.zip",
+                "reference": "ff09bf7405371941acec2ffaab852353b7fb315b",
+                "shasum": ""
+            },
+            "require": {
+                "barryvdh/laravel-stack-middleware": "^1.0",
+                "illuminate/support": "5.5.x|5.6.x",
+                "php": ">=5.5",
+                "symfony/console": "^3.2|^4",
+                "symfony/http-kernel": "^3.2|^4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.3-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Barryvdh\\HttpCache\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\HttpCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "HttpCache for Laravel 5",
+            "keywords": [
+                "cache",
+                "esi",
+                "httpcache",
+                "laravel"
+            ],
+            "time": "2018-03-05T19:18:35+00:00"
+        },
+        {
+            "name": "barryvdh/laravel-stack-middleware",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-stack-middleware.git",
+                "reference": "0c170f35bc0f4ad1beaa8f554a1cdf5f8a1ffff3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/barryvdh/laravel-stack-middleware/0c170f35bc0f4ad1beaa8f554a1cdf5f8a1ffff3.zip",
+                "reference": "0c170f35bc0f4ad1beaa8f554a1cdf5f8a1ffff3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.1.x|5.2.x|5.3.x|5.4.x|5.5.x|5.6.x",
+                "php": ">=5.5",
+                "symfony/http-kernel": "~2.6|^3|^4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Barryvdh\\StackMiddleware\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Stack": "Barryvdh\\StackMiddleware\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\StackMiddleware\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Stack Middleware for Laravel 5",
+            "keywords": [
+                "StackPHP",
+                "laravel",
+                "middleware",
+                "stack"
+            ],
+            "time": "2018-02-19T19:25:30+00:00"
+        },
         {
             "name": "barryvdh/laravel-translation-manager",
             "version": "dev-master",
