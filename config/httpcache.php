@@ -29,8 +29,8 @@ return array(
         'debug'                  => env('APP_DEBUG', false),
         'default_ttl'            => 60,
         'private_headers'        => ['Authorization'],
-        'allow_reload'           => true, // "ctrl+shift+r" force refresh
-        'allow_revalidate'       => true, // "ctrl+r" refresh button
+        'allow_reload'           => false, // "ctrl+shift+r" force refresh
+        'allow_revalidate'       => false, // "ctrl+r" refresh button
         'stale_while_revalidate' => 2,
         'stale_if_error'         => 60,
     ],
