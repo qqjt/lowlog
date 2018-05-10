@@ -40,12 +40,12 @@ class BlogInit extends Command
     public function handle()
     {
         //Get owner
-        $owner = User::where('email', env('BLOGGER_EMAIL'))->first();
+        $owner = User::whereEmail(config('blog.blogger.email'))->first();
         if ($owner===null) {
             $this->info('Owner account not existed');
-            $email = env('BLOGGER_EMAIL');
-            $name = env('BLOGGER_NAME');
-            $password = env('BLOGGER_PASSWORD');
+            $email = config('blog.blogger.email');
+            $name = config('blog.blogger.name');
+            $password = config('blog.blogger.password');
             if ($email && $name && $password){
                 $owner = new User();
                 $owner->email = $email;
@@ -61,7 +61,7 @@ class BlogInit extends Command
         $roleNames = ['author', 'subscriber'];
         foreach ($roleNames as $roleName) {
             $roleStr = $roleName.'Role';
-            $$roleStr = Role::where('name', $roleName)->first();
+            $$roleStr = Role::whereName( $roleName)->first();
             if ($$roleStr===null) {
                 $$roleStr = new Role();
                 $$roleStr->name = $roleName;

@@ -1,5 +1,28 @@
 @extends('layouts.two')
 @section('title'){{$post->title}} - {{config('app.name')}}@endsection
+@section('meta')
+    <link rel="canonical" href="{{route('post.show', ['post'=>$post->hashid])}}"/>
+@endsection
+@section('style')
+    <link href="{{cdn(mix('/vendor/simplemde/simplemde.min.css'))}}" rel="stylesheet">
+    <link href="{{cdn(mix("/vendor/prism/prism.css"))}}" rel="stylesheet">
+    <style>
+        .CodeMirror, .CodeMirror-scroll {
+            min-height: 6em;
+        }
+    </style>
+    <script type="application/ld+json">
+        {
+            "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+            "@id": "{{route('post.show', ['post'=>$post->hashid])}}",
+            "appid": "1586661500046202",
+            "title": "{{$post->title}}",
+            "images": [
+            ],
+            "pubDate": "{{$post->posted_at->format("Y-m-d\TH:i:s")}}"
+        }
+    </script>
+@endsection
 @section('sidebar')
     <nav class="collapse bd-links">
         {!! $post->toc !!}
@@ -67,15 +90,6 @@
             <input type="hidden" name="post_hashid" value="{{$post->hashid}}">
         </form>
     </div>
-@endsection
-@section('style')
-    <link href="{{cdn(mix('/vendor/simplemde/simplemde.min.css'))}}" rel="stylesheet">
-    <link href="{{cdn(mix("/vendor/prism/prism.css"))}}" rel="stylesheet">
-    <style>
-        .CodeMirror, .CodeMirror-scroll {
-            min-height: 6em;
-        }
-    </style>
 @endsection
 
 @section('script')
