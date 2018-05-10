@@ -23,6 +23,7 @@
             @endcan
         </div>
     </div>
+    <script>cambrian.render('tail')</script>
     <!-- Comments list ajax -->
     @if($post->comments_count)
         <div class="card mt-3">
