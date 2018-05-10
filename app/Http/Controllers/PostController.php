@@ -115,7 +115,7 @@ class PostController extends Controller
             }
             $post->tags()->sync($tagIds);
             \DB::commit();
-            return ['code' => 0, 'message' => __('Post updated.')];
+            return ['code' => 0, 'message' => __('Post updated.'), 'data'=>route('post.show', [$post])];
         } catch (\Exception $e) {
             \DB::rollBack();
             return ['code' => 1, 'message' => __($e->getMessage())];

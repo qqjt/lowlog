@@ -41,7 +41,7 @@
     "You can only upload image with extensions:": "你只能上传以下附件的图片：",
     "Search": "搜索",
     "Post updating failed!": "文章更新失败！",
-    "Search results for :q:": ":q 的搜索结果：",
+    "Search results for \":q:\"": "“:q”的搜索结果：",
     "Name": "姓名",
     "Comments: ": "评论：",
     "Name:": "姓名：",

@@ -2,7 +2,7 @@
 Auth::routes();
 Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::get('/', 'PostController@index')->name('post.index')->middleware(['http.cache']);
+Route::get('/', 'PostController@index')->name('post.index')->middleware('http.cache');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', 'PageController@about')->name('about')->middleware(['http.cache']);
 Route::get('/archive', 'PageController@archive')->name('archive')->middleware(['http.cache']);
@@ -20,7 +20,7 @@ Route::group(['prefix'=>'p'], function(){
     //add comment
     Route::post('/{post}/comment', 'CommentController@store')->name('comment.store');
     //show post, load comments
-    Route::get('/{post}', 'PostController@show')->name('post.show')->middleware(['http.cache']);
+    Route::get('/{post}', 'PostController@show')->name('post.show')->middleware('http.cache');
     Route::get('/{post}/c', 'CommentController@load')->name('comment.load');
 });
 //upload image

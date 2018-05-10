@@ -1,5 +1,6 @@
 @extends('layouts.two')
 @section('content')
+    <h1 class="bd-title">{{__("Search results for \":q:\"", ['q'=>request('q')])}}</h1>
     @if(count($paginatedPosts))
         <ul class="list-unstyled mb-0">
             @foreach($paginatedPosts as $post)
