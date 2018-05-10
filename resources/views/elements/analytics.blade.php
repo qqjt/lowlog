@@ -24,3 +24,4 @@
         s.parentNode.insertBefore(hm, s);
     })();
 </script>
+<script src="//msite.baidu.com/sdk/c.js?appid=1586661500046202"></script>
