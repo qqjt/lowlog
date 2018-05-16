@@ -19,6 +19,7 @@
         "mews/purifier": "^2.0",
         "predis/predis": "^1.1",
         "rap2hpoutre/laravel-log-viewer": "^0.11.0",
+        "spatie/laravel-analytics": "^3.6",
         "spatie/laravel-backup": "^5.5",
         "sunra/php-simple-html-dom-parser": "^1.5",
         "tamayo/laravel-scout-elastic": "^3.0",

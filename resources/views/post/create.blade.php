@@ -1,58 +1,60 @@
-@extends('layouts.two')
+@extends('layouts.app')
 @section('content')
-    <form id="new-post-form" method="post" action="{{route('post.store')}}">
-        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-            <label for="title">{{__('Title')}}</label>
-            <input type="text" class="form-control" id="title" name="title"
-                   placeholder="{{__("What's up?")}}">
-            @if ($errors->has('title'))
-                <span class="help-block">
+    <div class="container">
+        <form id="new-post-form" method="post" action="{{route('post.store')}}">
+            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                <label for="title">{{__('Title')}}</label>
+                <input type="text" class="form-control" id="title" name="title"
+                       placeholder="{{__("What's up?")}}">
+                @if ($errors->has('title'))
+                    <span class="help-block">
                                     <strong>{{ $errors->first('title') }}</strong>
                                 </span>
-            @endif
-        </div>
-        <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-            <label for="content">{{__('Content')}}</label>
-            <textarea id="content" class="form-control" rows="3"
-                      placeholder="{{__("Blabla")}}"></textarea>
-            <input type="hidden" name="content">
-            @if ($errors->has('content'))
-                <span class="help-block">
+                @endif
+            </div>
+            <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
+                <label for="content">{{__('Content')}}</label>
+                <textarea id="content" class="form-control" rows="3"
+                          placeholder="{{__("Blabla")}}"></textarea>
+                <input type="hidden" name="content">
+                @if ($errors->has('content'))
+                    <span class="help-block">
                                     <strong>{{ $errors->first('content') }}</strong>
                                 </span>
-            @endif
-        </div>
-        <div class="form-group{{ $errors->has('posted_at') ? ' has-error' : '' }}">
-            <label for="posted_at">{{__('Posted at')}}</label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="posted_at" name="posted_at"
-                       placeholder="{{__("Post datetime")}}">
-                <span class="input-group-append input-group-addon">
+                @endif
+            </div>
+            <div class="form-group{{ $errors->has('posted_at') ? ' has-error' : '' }}">
+                <label for="posted_at">{{__('Posted at')}}</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="posted_at" name="posted_at"
+                           placeholder="{{__("Post datetime")}}">
+                    <span class="input-group-append input-group-addon">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </span>
-            </div>
-            @if ($errors->has('posted_at'))
-                <span class="help-block">
+                </div>
+                @if ($errors->has('posted_at'))
+                    <span class="help-block">
                                     <strong>{{ $errors->first('posted_at') }}</strong>
                                     </span>
-            @endif
-        </div>
-        <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
-            <label for="tags">{{__('Tags')}}</label>
-            <select class="form-control" name="tags[]" id="tags" multiple
-                    placeholder="{{__("Type and hit 'Enter'")}}"></select>
-        </div>
-        <div class="form-group{{ $errors->has('is_draft') ? ' has-error' : '' }}">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="is_draft" value="1" id="is_draft">
-                <label class="form-check-label" for="is_draft">
-                    {{__("Draft?")}}
-                </label>
+                @endif
             </div>
-        </div>
-        <button id="save-post-btn" type="button" class="btn btn-primary">{{__('Submit')}}</button>
-        {!! csrf_field() !!}
-    </form>
+            <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
+                <label for="tags">{{__('Tags')}}</label>
+                <select class="form-control" name="tags[]" id="tags" multiple
+                        placeholder="{{__("Type and hit 'Enter'")}}"></select>
+            </div>
+            <div class="form-group{{ $errors->has('is_draft') ? ' has-error' : '' }}">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="is_draft" value="1" id="is_draft">
+                    <label class="form-check-label" for="is_draft">
+                        {{__("Draft?")}}
+                    </label>
+                </div>
+            </div>
+            <button id="save-post-btn" type="button" class="btn btn-primary">{{__('Submit')}}</button>
+            {!! csrf_field() !!}
+        </form>
+    </div>
 @endsection
 @section('script')
     <script src="{{cdn(mix('/vendor/simplemde/simplemde.min.js'))}}"></script>

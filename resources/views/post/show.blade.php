@@ -11,7 +11,7 @@
             min-height: 6em;
         }
     </style>
-    <script type="application/ld+json">
+    {{--<script type="application/ld+json">
         {
             "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
             "@id": "{{route('post.show', ['post'=>$post->hashid])}}",
@@ -21,7 +21,7 @@
             ],
             "pubDate": "{{$post->posted_at->format("Y-m-d\TH:i:s")}}"
         }
-    </script>
+    </script>--}}
 @endsection
 @section('sidebar')
     <nav class="collapse bd-links">
@@ -46,7 +46,7 @@
             @endcan
         </div>
     </div>
-    <script>cambrian.render('tail')</script>
+    {{--<script>cambrian.render('tail')</script>--}}
     <!-- Comments list ajax -->
     @if($post->comments_count)
         <div class="card mt-3">

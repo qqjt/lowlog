@@ -87,12 +87,14 @@ class PostController extends Controller
         $this->validate($request, [
             'title' => 'required|string|max:191',
             'content' => 'required|string',
+            'excerpt' => 'required|string|max:240',
             'posted_at' => 'required|date_format:Y-m-d H:i:s'
         ]);
         try {
             \DB::beginTransaction();
             $post->title = $request->input('title');
             $post->content = $request->input('content');
+            $post->excerpt = $request->input('excerpt');
             $post->posted_at = $request->input('posted_at');
             if ($request->has('is_draft'))
                 $post->is_draft = 1;

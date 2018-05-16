@@ -28,13 +28,13 @@ class XzhSubmitBatch extends Command
         }
         $api = 'http://data.zz.baidu.com/urls?appid='.config('xzh.app_id').'&token='.config('xzh.token').'&type=batch';
         $ch = curl_init();
-        $options = array(
+        $options = [
             CURLOPT_URL => $api,
             CURLOPT_POST => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POSTFIELDS => implode("\n", $urls),
             CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
-        );
+        ];
         curl_setopt_array($ch, $options);
         $result = curl_exec($ch);
         $this->alert($result);

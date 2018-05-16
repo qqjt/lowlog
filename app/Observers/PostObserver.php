@@ -9,7 +9,6 @@ use Sunra\PhpSimple\HtmlDomParser;
 
 class PostObserver
 {
-
     public function saving(Post $post)
     {
         $markdown = new Markdown();
@@ -55,7 +54,8 @@ class PostObserver
 
         $post->toc = $toc;
         $post->html = (string)$htmlDom;
-        $post->excerpt = str_limit(strip_tags($post->html), 300);
+        if (!$post->excerpt)
+            $post->excerpt = str_limit(strip_tags($post->html), 300);
     }
 
     public function created(Post $post)
