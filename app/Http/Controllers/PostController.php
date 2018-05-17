@@ -53,14 +53,23 @@ class PostController extends Controller
             $post->save();
             //handle tags
             if (!empty($request->input('tags'))) {
-                $existedTags = Tag::whereIn('tag_value', $request->input('tags'))->get();
+                $tagsArr = [];
+                $tagValues = [];
+                foreach($request->input('tags') as $displayName) {
+                    $displayName = trim($displayName);
+                    $tagValue = strtolower($displayName);
+                    $tagsArr[$tagValue] = $displayName;
+                    $tagValues[] = $tagValue;
+                }
+                $existedTags = Tag::whereIn('tag_value', $tagValues)->get();
                 $tagIds = $existedTags->pluck('id')->toArray();
-                $newTagValues = array_diff($request->input('tags'), $existedTags->pluck('tag_value')->toArray());
+                $newTagValues = array_diff($tagValues, $existedTags->pluck('tag_value')->toArray());
                 if (!empty($newTagValues)) {
                     foreach ($newTagValues as $newTagValue) {
                         if ($newTagValue) {
                             $newTag = new Tag();
                             $newTag->tag_value = $newTagValue;
+                            $newTag->display_name = $tagsArr[$newTagValue];
                             $newTag->save();
                             $tagIds[] = $newTag->id;
                         }
@@ -101,19 +110,30 @@ class PostController extends Controller
             $post->save();
             $tagIds = [];
             if (!empty($request->input('tags'))) {
-                $existedTags = Tag::whereIn('tag_value', $request->input('tags'))->get();
+                $tagsArr = [];
+                $tagValues = [];
+                foreach($request->input('tags') as $displayName) {
+                    $displayName = trim($displayName);
+                    $tagValue = strtolower($displayName);
+                    $tagsArr[$tagValue] = $displayName;
+                    $tagValues[] = $tagValue;
+                }
+                $existedTags = Tag::whereIn('tag_value', $tagValues)->get();
                 $tagIds = $existedTags->pluck('id')->toArray();
-                $newTagValues = array_diff($request->input('tags'), $existedTags->pluck('tag_value')->toArray());
+                $newTagValues = array_diff($tagValues, $existedTags->pluck('tag_value')->toArray());
                 if (!empty($newTagValues)) {
                     foreach ($newTagValues as $newTagValue) {
                         if ($newTagValue) {
                             $newTag = new Tag();
                             $newTag->tag_value = $newTagValue;
+                            $newTag->display_name = $tagsArr[$newTagValue];
                             $newTag->save();
                             $tagIds[] = $newTag->id;
                         }
                     }
                 }
+                if (!empty($tagIds))
+                    $post->tags()->attach($tagIds);
             }
             $post->tags()->sync($tagIds);
             \DB::commit();

@@ -18,7 +18,7 @@
                                 @if(!$post->tags->isEmpty())
                                     @foreach($post->tags as $tag)
                                         <a href="{{route('post.index', ['tags'=>$tag->tag_value])}}"><span
-                                                    class="badge badge-primary">{{$tag->tag_value}}</span></a>
+                                                    class="badge badge-primary">{{$tag->display_name}}</span></a>
                                     @endforeach
                                 @endif
                             </li>

@@ -7,14 +7,6 @@
 
         gtag('config', 'UA-51677064-1');
     </script>
-    <!-- Google Adsense -->
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-9451565495816715",
-            enable_page_level_ads: true
-        });
-    </script>
     <!--百度统计-->
     <script>
         var _hmt = _hmt || [];
@@ -25,4 +17,3 @@
             s.parentNode.insertBefore(hm, s);
         })();
     </script>
-    {{--<script src="//msite.baidu.com/sdk/c.js?appid=1586661500046202"></script>--}}

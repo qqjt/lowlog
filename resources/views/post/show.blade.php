@@ -1,10 +1,11 @@
 @extends('layouts.two')
 @section('title'){{$post->title}} - {{config('app.name')}}@endsection
 @section('meta')
-    <link rel="canonical" href="{{route('post.show', ['post'=>$post->hashid])}}"/>
+<link rel="canonical" href="{{route('post.show', ['post'=>$post->hashid])}}"/>
+    <meta name="description" content="{{$post->excerpt}}">
 @endsection
 @section('style')
-    <link href="{{cdn(mix('/vendor/simplemde/simplemde.min.css'))}}" rel="stylesheet">
+<link href="{{cdn(mix('/vendor/simplemde/simplemde.min.css'))}}" rel="stylesheet">
     <link href="{{cdn(mix("/vendor/prism/prism.css"))}}" rel="stylesheet">
     <style>
         .CodeMirror, .CodeMirror-scroll {
@@ -46,7 +47,6 @@
             @endcan
         </div>
     </div>
-    {{--<script>cambrian.render('tail')</script>--}}
     <!-- Comments list ajax -->
     @if($post->comments_count)
         <div class="card mt-3">
@@ -91,92 +91,91 @@
         </form>
     </div>
 @endsection
-
 @section('script')
-    <script src="{{cdn(mix('/vendor/simplemde/simplemde.min.js'))}}"></script>
-    <script src="{{cdn(mix("/vendor/prism/prism.js"))}}"></script>
-    <script>
-        var editors = [];
-        $(document).ready(function () {
-            //Markdown editor
-            editors['comment'] = new SimpleMDE({
-                element: document.getElementById("comment"),
-                spellChecker: false,
-                tabSize: 4,
-                status: false,
-                autoDownloadFontAwesome: false,
-                autosave: {
-                    enabled: true,
-                    delay: 3,
-                    uniqueId: 'comment_{{$post->hashid}}'
-                }
-            });
-            //Ajax load comments
-            $('body').on('click', '.pagination a', function (e) {
-                e.preventDefault();
-                var url = $(this).attr('href');
-                getComments(url);
-            });
-
-            function getComments(url) {
-                $.ajax({
-                    url: url
-                }).done(function (data) {
-                    $('#comments').html(data);
-                }).fail(function () {
-                    alert("{{__("Comments could not be loaded.")}}");
-                });
+<script src="{{cdn(mix('/vendor/simplemde/simplemde.min.js'))}}"></script>
+<script src="{{cdn(mix("/vendor/prism/prism.js"))}}"></script>
+<script>
+    var editors = [];
+    $(document).ready(function () {
+        //Markdown editor
+        editors['comment'] = new SimpleMDE({
+            element: document.getElementById("comment"),
+            spellChecker: false,
+            tabSize: 4,
+            status: false,
+            autoDownloadFontAwesome: false,
+            autosave: {
+                enabled: true,
+                delay: 3,
+                uniqueId: 'comment_{{$post->hashid}}'
             }
-
-            //Add comment action
-            $(document).on('click', '.save-comment', function () {
-                var editor_name = $(this).data('editor');
-                $(this).closest('form').find('input[name="content"]').val(editors[editor_name].value());
-                var _self = $(this);
-                $.ajax({
-                    type: 'post',
-                    url: '{{route('comment.store', ['post'=>$post])}}',
-                    data: $(this).closest('form').serialize(),
-                    dataType: 'json',
-                    beforeSend: function () {
-                        _self.prop('disabled', true);
-                    },
-                    success: function (res) {
-                        if (res.code === 0) {
-                            swal({
-                                title: res.message
-                            }).then((value) => {
-                                location.reload();
-                            });
-                        } else {
-                            swal({
-                                title: res.message,
-                                type: "error"
-                            });
-                        }
-                    },
-                    error: function (data) {
-                        if (data.status === 422) {
-                            var res = data.responseJSON;
-                            for (var o in res.errors) {
-                                swal({
-                                    title: res.errors[o],
-                                    type: "error"
-                                });
-                                break;
-                            }
-                        } else {
-                            swal({
-                                title: "{{__("Comment failed.")}}",
-                                type: "error"
-                            });
-                        }
-                    },
-                    complete: function () {
-                        _self.prop('disabled', false);
-                    }
-                })
-            });
         });
-    </script>
+        //Ajax load comments
+        $('body').on('click', '.pagination a', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            getComments(url);
+        });
+
+        function getComments(url) {
+            $.ajax({
+                url: url
+            }).done(function (data) {
+                $('#comments').html(data);
+            }).fail(function () {
+                alert("{{__("Comments could not be loaded.")}}");
+            });
+        }
+
+        //Add comment action
+        $(document).on('click', '.save-comment', function () {
+            var editor_name = $(this).data('editor');
+            $(this).closest('form').find('input[name="content"]').val(editors[editor_name].value());
+            var _self = $(this);
+            $.ajax({
+                type: 'post',
+                url: '{{route('comment.store', ['post'=>$post])}}',
+                data: $(this).closest('form').serialize(),
+                dataType: 'json',
+                beforeSend: function () {
+                    _self.prop('disabled', true);
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        swal({
+                            title: res.message
+                        }).then((value) => {
+                            location.reload();
+                        });
+                    } else {
+                        swal({
+                            title: res.message,
+                            type: "error"
+                        });
+                    }
+                },
+                error: function (data) {
+                    if (data.status === 422) {
+                        var res = data.responseJSON;
+                        for (var o in res.errors) {
+                            swal({
+                                title: res.errors[o],
+                                type: "error"
+                            });
+                            break;
+                        }
+                    } else {
+                        swal({
+                            title: "{{__("Comment failed.")}}",
+                            type: "error"
+                        });
+                    }
+                },
+                complete: function () {
+                    _self.prop('disabled', false);
+                }
+            })
+        });
+    });
+</script>
 @endsection

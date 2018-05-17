@@ -4,13 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     @yield('meta')
     <title>@yield('title', config('app.name'))</title>
-
     <!-- Styles -->
     <link href="{{ cdn(mix('/css/app.css')) }}" rel="stylesheet">
     <link href="{{cdn(mix('/css/custom.min.css'))}}" rel="stylesheet">
@@ -114,15 +111,6 @@
         </main>
     </div>
 </div>
-
-{{--<footer class="py-3">--}}
-{{--<div class="container">--}}
-{{--<p class="m-0 text-center"><i class="fa fa-copyright"></i> low.bi 2018 | <i class="fa fa-github"></i> <a--}}
-{{--href="https://github.com/qqjt/lowlog">lowlog</a></p>--}}
-{{--</div>--}}
-{{--<!-- /.container -->--}}
-{{--</footer>--}}
-
 <!-- Scripts -->
 <script src="{{ cdn(mix('/js/manifest.js')) }}"></script>
 <script src="{{ cdn(mix('/js/vendor.js')) }}"></script>

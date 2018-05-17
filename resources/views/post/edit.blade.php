@@ -57,7 +57,7 @@
                         placeholder="{{__("Type and hit 'Enter'")}}">
                     @if($post->tags)
                         @foreach($post->tags as $tag)
-                            <option value="{{$tag->tag_value}}">{{$tag->tag_value}}</option>
+                            <option value="{{$tag->display_name}}">{{$tag->display_name}}</option>
                         @endforeach
                     @endif
                 </select>
