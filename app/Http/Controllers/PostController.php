@@ -132,8 +132,6 @@ class PostController extends Controller
                         }
                     }
                 }
-                if (!empty($tagIds))
-                    $post->tags()->attach($tagIds);
             }
             $post->tags()->sync($tagIds);
             \DB::commit();
