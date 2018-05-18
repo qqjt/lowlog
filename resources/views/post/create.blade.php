@@ -29,13 +29,33 @@
                     <input type="text" class="form-control" id="posted_at" name="posted_at"
                            placeholder="{{__("Post datetime")}}">
                     <span class="input-group-append input-group-addon">
-                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                    </span>
+                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </span>
                 </div>
                 @if ($errors->has('posted_at'))
                     <span class="help-block">
-                                    <strong>{{ $errors->first('posted_at') }}</strong>
-                                    </span>
+                        <strong>{{ $errors->first('posted_at') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+                <label>{{__('Category')}}</label>
+                <div id="categories">
+                    @foreach($categories as $category)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="{{$category->id}}"
+                                   id="category-{{$category->id}}" name="categories[]">
+                            <label class="form-check-label" for="category-{{$category->id}}">
+                                {{$category->name}}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#new-category-modal"><i class="fa fa-plus"></i></button>
+                @if ($errors->has('posted_at'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('posted_at') }}</strong>
+                    </span>
                 @endif
             </div>
             <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
@@ -55,6 +75,37 @@
             {!! csrf_field() !!}
         </form>
     </div>
+    <!--add category modal-->
+    <div class="modal fade" id="new-category-modal" tabindex="-1" role="dialog"
+         aria-labelledby="new-category-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"
+                        id="new-category-modal-title">{{__("New Category")}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="new-category-form">
+                        @csrf
+                        <div class="form-group">
+                            <label for="category-name" class="col-form-label"></label>
+                            <input type="text" class="form-control" id="category-name" name="name"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">{{__("Close")}}</button>
+                    <button type="button" class="btn btn-primary"
+                            id="save-category-btn">{{__("Save")}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('script')
     <script src="{{cdn(mix('/vendor/simplemde/simplemde.min.js'))}}"></script>
@@ -65,6 +116,7 @@
     <script src="{{cdn(mix('/vendor/pc-bootstrap4-datetimepicker/js/bootstrap-datetimepicker.min.js'))}}"></script>
     <script>
         $(document).ready(function () {
+            // markdown editor & file upload
             var simplemde = new SimpleMDE({
                 autoDownloadFontAwesome: false,
                 element: document.getElementById("content"),
@@ -99,7 +151,7 @@
                     return false;
                 }
             });
-
+            // datetimepicker & tagsinput
             $('#posted_at').datetimepicker({
                 locale: 'zh-cn',
                 format: 'YYYY-MM-DD HH:mm:ss'
@@ -107,7 +159,57 @@
             $('#tags').tagsinput({
                 tagClass: 'badge badge-primary'
             });
-
+            //add category
+            $(document).on('click', '#save-category-btn', function () {
+                $.ajax({
+                    type: 'post',
+                    url: '{{route('category.store')}}',
+                    data: $('#new-category-form').serialize(),
+                    dataType: 'json',
+                    beforeSend: function () {
+                        $('#save-category-btn').prop('disabled', true);
+                    },
+                    success: function (res) {
+                        if (res.code === 0) {
+                            $('#new-category-modal').modal('hide');
+                            $('#categories').append('<div class="form-check form-check-inline">\n' +
+                                '<input class="form-check-input" type="checkbox" value="'+ res.data.id +'" id="category'+ res.data.id +'" checked>\n' +
+                                '<label class="form-check-label" for="category'+ res.data.id +'">\n' + res.data.name +
+                                '</label>\n' +
+                                '</div>');
+                            swal({
+                                title: res.message
+                            });
+                        } else {
+                            swal({
+                                title: res.message,
+                                type: "error"
+                            });
+                        }
+                    },
+                    error: function (data) {
+                        if (data.status === 422) {
+                            var res = data.responseJSON;
+                            for (var o in res.errors) {
+                                swal({
+                                    title: res.errors[o],
+                                    type: "error"
+                                });
+                                break;
+                            }
+                        } else {
+                            swal({
+                                title: "{{__('Category creating failed!')}}",
+                                type: "error"
+                            });
+                        }
+                    },
+                    complete: function () {
+                        $('#save-category-btn').prop('disabled', false);
+                    }
+                });
+            });
+            // save post
             $(document).on('click', '#save-post-btn', function () {
                 $('input[name="content"]').val(simplemde.value());
                 $.ajax({

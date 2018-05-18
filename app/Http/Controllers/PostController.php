@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Comment;
 use App\Post;
 use App\Tag;
@@ -31,7 +32,8 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('post.create');
+        $categories = Category::all();
+        return view('post.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -78,6 +80,9 @@ class PostController extends Controller
                 if (!empty($tagIds))
                     $post->tags()->attach($tagIds);
             }
+            //category
+            if ($request->has('categories'))
+                $post->categories()->sync($request->input('categories'));
             \DB::commit();
         } catch (\Exception $e) {
             \DB::rollBack();
@@ -88,7 +93,8 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('post.edit', ['post' => $post]);
+        $categories = Category::all();
+        return view('post.edit', compact('post', 'categories'));
     }
 
     public function update(Request $request, Post $post)
@@ -134,6 +140,7 @@ class PostController extends Controller
                 }
             }
             $post->tags()->sync($tagIds);
+            $post->categories()->sync($request->input('categories'));
             \DB::commit();
             return ['code' => 0, 'message' => __('Post updated.'), 'data'=>route('post.show', [$post])];
         } catch (\Exception $e) {

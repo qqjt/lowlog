@@ -23,5 +23,10 @@ Route::group(['prefix'=>'p'], function(){
     Route::get('/{post}', 'PostController@show')->name('post.show')->middleware('http.cache');
     Route::get('/{post}/c', 'CommentController@load')->name('comment.load');
 });
+Route::group([], function(){
+    // post category
+    Route::post('/cat', 'CategoryController@store')->name('category.store');
+    Route::delete('/cat/{category}', 'CategoryController@destroy')->name('category.destroy');
+});
 //upload image
 Route::post('/image', 'ImageController@upload')->name('image.upload')->middleware('auth');
