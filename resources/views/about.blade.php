@@ -10,3 +10,6 @@
 
     <p>从前是个网瘾少年，现在少年没了。</p>
 @endsection
+@section('style')
+@include('elements.analytics')
+@endsection

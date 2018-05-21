@@ -19,3 +19,6 @@
         </ul>
     @endforeach
 @endsection
+@section('style')
+    @include('elements.analytics')
+@endsection

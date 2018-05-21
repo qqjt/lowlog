@@ -41,3 +41,6 @@
         </div>
     </div>
 @endsection
+@section('style')
+    @include('elements.analytics')
+@endsection

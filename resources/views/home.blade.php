@@ -6,9 +6,12 @@
                 <li class="media mb-3">
                     <div class="media-body">
                         <h4 class="media-heading">
-                            @if($post->is_draft)<a href="{{route('post.edit', [$post])}}"><span
-                                        class="badge badge-success"><i class="fa fa-edit"></i></span></a>&nbsp;@endif
-                            <a href="{{route('post.show', ['hashid'=> $post->hashid])}}">{{$post->title}}</a>
+                            @if($post->is_draft)
+                                <a href="{{route('post.edit', [$post])}}"><span
+                                        class="badge badge-success"><i class="fa fa-edit"></i></span></a>&nbsp;<a href="{{route('post.preview', ['hashid'=> $post->hashid])}}">{{$post->title}}</a>
+                            @else
+                                <a href="{{route('post.show', ['hashid'=> $post->hashid])}}">{{$post->title}}</a>
+                            @endif
                         </h4>
                         <p>{{$post->excerpt}}</p>
                         <ul class="list-inline">

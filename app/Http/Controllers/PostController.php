@@ -142,7 +142,7 @@ class PostController extends Controller
             $post->tags()->sync($tagIds);
             $post->categories()->sync($request->input('categories'));
             \DB::commit();
-            return ['code' => 0, 'message' => __('Post updated.'), 'data'=>route('post.show', [$post])];
+            return ['code' => 0, 'message' => __('Post updated.'), 'data'=>route('post.preview', [$post])];
         } catch (\Exception $e) {
             \DB::rollBack();
             return ['code' => 1, 'message' => __($e->getMessage())];
@@ -156,7 +156,7 @@ class PostController extends Controller
 
     public function show($hashid)
     {
-        $post = Post::where('hashid', $hashid)->whereIsDraft(Post::NOT_IN_DRAFT)->with(['comments' => function ($query) {
+        $post = Post::whereHashid($hashid)->whereIsDraft(Post::NOT_IN_DRAFT)->with(['comments' => function ($query) {
             $query->orderBy('created_at');
         }])->withCount('comments')->first();
         if ($post === null)
@@ -183,5 +183,26 @@ class PostController extends Controller
             $paginatedPosts = Post::search($q)->paginate();
         }
         return view('post.search', compact('paginatedPosts', 'q'));
+    }
+
+    public function preview($hashid)
+    {
+        $post = Post::whereHashid($hashid)->with(['comments' => function ($query) {
+            $query->orderBy('created_at');
+        }])->withCount('comments')->first();
+        if ($post === null)
+            abort(404, __("Post Not Found."));
+        //load page default comments(the last page), for ajax loading comments refer to load() in CommentController
+        $perPage = 10;
+        $query = $post->comments();
+        $totalCount = $post->comments_count;
+        $pageCount = intval(($totalCount - 1) / $perPage) + 1;
+        $currentPage = $pageCount;
+        $comments = $query->orderBy('id')->skip(($currentPage - 1) * $perPage)->take($perPage)->get();
+
+        $paginator = new LengthAwarePaginator($comments, $totalCount, $perPage, $currentPage, [
+            'path' => route('comment.load', ['post' => $post->hashid]),
+        ]);
+        return view('post.preview', ['post' => $post, 'comments' => $paginator]);
     }
 }

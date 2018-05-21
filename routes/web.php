@@ -16,6 +16,7 @@ Route::group(['prefix'=>'p'], function(){
         Route::post('/create', 'PostController@store')->name('post.store')->middleware('can:create,App\Post');
         Route::post('/{post}/edit', 'PostController@update')->name('post.update')->middleware('can:update,post');
         Route::get('/{post}/edit', 'PostController@edit')->name('post.edit')->middleware('can:update,post');
+        Route::get('/{post}/preview', 'PostController@preview')->name('post.preview')->middleware('http.cache');
     });
     //add comment
     Route::post('/{post}/comment', 'CommentController@store')->name('comment.store');

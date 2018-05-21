@@ -36,3 +36,6 @@
         {{__('Nothing here.')}}
     @endif
 @endsection
+@section('style')
+    @include('elements.analytics')
+@endsection

@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="{{cdn(mix('/vendor/font-awesome/css/font-awesome.min.css'))}}">
     <link href="{{cdn(mix('/css/custom.min.css'))}}" rel="stylesheet">
     @yield('style')
-    @include('elements.analytics')
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark flex-column flex-md-row bd-navbar bg-primary">
