@@ -113,6 +113,8 @@ class PostController extends Controller
             $post->posted_at = $request->input('posted_at');
             if ($request->has('is_draft'))
                 $post->is_draft = 1;
+            else
+                $post->is_draft = 0;
             $post->save();
             $tagIds = [];
             if (!empty($request->input('tags'))) {
