@@ -69,3 +69,12 @@ if (!function_exists('proxy_gravatar')) {
         return  preg_replace($pattern, '$1'.$prefix.'$3', $str);
     }
 }
+
+if (!function_exists('fix_url')) {
+    function fix_url($url) {
+        if (strpos($url, 'http') !== 0) {
+            $url =  'http://' . $url;
+        }
+        return $url;
+    }
+}

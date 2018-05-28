@@ -28,7 +28,7 @@ class CommentController extends Controller
         } else {
             $comment->author_name = $request->input('author_name');
             $comment->email = $request->input('email');
-            $comment->url = $request->input('url');
+            $comment->url = fix_url($request->input('url'));
         }
         $comment->post_id = $post->id;
         if ($request->has('parent_hashid')){
