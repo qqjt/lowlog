@@ -18,7 +18,6 @@
         "laravel/tinker": "~1.0",
         "mews/purifier": "^2.0",
         "predis/predis": "^1.1",
-        "qqjt/baidu-tongji": "dev-master",
         "rap2hpoutre/laravel-log-viewer": "^0.11.0",
         "spatie/laravel-analytics": "^3.6",
         "spatie/laravel-backup": "^5.5",
@@ -78,11 +77,5 @@
         "optimize-autoloader": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": {
-        "qqjt": {
-            "type": "path",
-            "url": "/home/t/code/baidu-tongji"
-        }
-    }
+    "prefer-stable": true
 }
