@@ -12,17 +12,6 @@
             min-height: 6em;
         }
     </style>
-    {{--<script type="application/ld+json">
-        {
-            "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
-            "@id": "{{route('post.show', ['post'=>$post->hashid])}}",
-            "appid": "1586661500046202",
-            "title": "{{$post->title}}",
-            "images": [
-            ],
-            "pubDate": "{{$post->posted_at->format("Y-m-d\TH:i:s")}}"
-        }
-    </script>--}}
     @include('elements.analytics')
 @endsection
 @section('sidebar')
@@ -55,7 +44,7 @@
                 <div class="total">{{__("Comments: ")}}<b>{{$post->comments_count}}</b></div>
             </div>
             <div id="comments" class="card-body">
-                @include('comment.load')
+
             </div>
         </div>
     @endif
@@ -127,6 +116,7 @@
                 alert("{{__("Comments could not be loaded.")}}");
             });
         }
+        getComments("{{route('comment.load', ['post'=>$post->hashid])}}");
 
         //Add comment action
         $(document).on('click', '.save-comment', function () {
