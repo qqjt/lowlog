@@ -1,18 +1,22 @@
 A PHP blog built upon laravel framework & bootstrap 4. Check [low.bi](https://low.bi) for demo.
+
 ## Features
  - simple blog with fundamental functions, post, page, tag, comment, archive etc
  - mobile friendly (thanks to bootstrap)
  - markdown support(only) with synatax highlighting
  - automatic table of contents generation
  - fulltext search using elasticsearch and ik analytics
+
 ## Installation
+
 ### Requirements
 Linux+nginx+MySQL+PHP(7.1+), install any required PHP extension if necessary.
+
 ### Install as a typical laravel project
 ```sh
 git clone https://github.com/qqjt/lowlog.git
 cd lowlog
-php artisan install
+composer install
 cp .env.example .env
 php artisan key:generate
 ```
@@ -20,12 +24,16 @@ Modify the .env file, migrate database:
 `php artisan migrate`
 and finally run a custom artisan command:
 `php artisan blog:init`
+
 ### Configure nginx
 sample nginx conf: [nginx-vhost.conf](/nginx-vhost.conf)
+
 ### Install elasticsearch for search
 Follow the instructions on [elastic](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html) website, install jdk first.
 install [ik-analysis](https://github.com/medcl/elasticsearch-analysis-ik) plugin if necessary.
+
 ## Additional packages
+
 ### PHP
 |name|despcription|
 |:---:|:---:|
@@ -37,6 +45,7 @@ install [ik-analysis](https://github.com/medcl/elasticsearch-analysis-ik) plugin
 |[tamayo/laravel-scout-elastic](https://github.com/ErickTamayo/laravel-scout-elastic)|elastic scout driver|
 |[thomaswelton/laravel-gravatar](https://github.com/thomaswelton/laravel-gravatar)|gravatar support|
 |[vinkla/hashids](https://github.com/vinkla/laravel-hashids)|generate hashid|
+
 ### Frontend
 |name|despcription|
 |:---:|:---:|
