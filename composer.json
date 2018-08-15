@@ -12,6 +12,7 @@
         "doctrine/dbal": "^2.6",
         "fideloper/proxy": "~4.0",
         "guzzlehttp/guzzle": "^6.3",
+        "hhxsv5/laravel-s": "~2.0",
         "hieu-le/active": "^3.5",
         "laravel/framework": "5.6.*",
         "laravel/scout": "^4.0",

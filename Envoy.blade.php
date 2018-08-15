@@ -24,6 +24,9 @@ git clone --depth 1 {{ $repository }} {{ $new_release_dir }}
 echo "Starting deployment ({{ $release }})"
 cd {{ $new_release_dir }}
 composer install --prefer-dist --no-scripts -q -o
+php artisan config:cache
+php artisan route:cache
+php artisan view:clear
 @endtask
 
 @task('update_symlinks')

@@ -1,2 +1,4 @@
 !.gitignore
 /httpcache
+laravels.pid
+laravels.socket
