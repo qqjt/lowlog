@@ -32,6 +32,7 @@ rm -rf {{ $new_release_dir }}/storage
 ln -nfs {{ $app_dir }}/storage {{ $new_release_dir }}/storage
 
 echo 'Linking uploads directory'
+rm -rf {{ $new_release_dir }}/public/uploads
 ln -nfs {{ $app_dir }}/public/uploads {{ $new_release_dir }}/public/uploads
 
 echo 'Linking .env file'

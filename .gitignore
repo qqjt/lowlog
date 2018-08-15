@@ -12,6 +12,5 @@ npm-debug.log
 yarn-error.log
 .env
 _ide_helper.php
-public/uploads/*
 package-lock.json
 *.swp
