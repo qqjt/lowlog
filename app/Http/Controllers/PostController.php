@@ -15,6 +15,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
+        $perPage = 10;
         $query = Post::whereIsDraft(Post::NOT_IN_DRAFT)->with(['author', 'tags'])->orderBy('posted_at', 'desc');
         if ($request->has('tags')) {
             $tags = explode(',', $request->input('tags'));
@@ -26,8 +27,18 @@ class PostController extends Controller
                 }
             }
         }
-        $paginatedPosts = $query->paginate(10);
-        return view('post.index', ['paginatedPosts' => $paginatedPosts]);
+        //Manually create paginator, defaults to the last page.
+        $totalCount = $query->count();
+        $pageCount = intval(($totalCount - 1) / $perPage) + 1;
+        $currentPage = $request->has('page') ? LengthAwarePaginator::resolveCurrentPage() : $pageCount;
+        $posts = $query->skip(($currentPage - 1) * $perPage)->take($perPage)->get();
+
+        $paginator = new LengthAwarePaginator($posts, $totalCount, $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
+        $paginator->appends($request->except('page'));
+
+        return view('post.index', ['paginatedPosts' => $paginator]);
     }
 
     public function create()
@@ -50,14 +61,16 @@ class PostController extends Controller
             $post->content = $request->input('content');
             $post->posted_at = $request->input('posted_at') ?: Carbon::now()->format('Y-m-d H:i:s');
             $post->author_id = \Auth::user()->id;
-            if ($request->has('is_draft'))
+            if ($request->has('is_draft')){
                 $post->is_draft = 1;
+                $post->posted_at = null;
+            }
             $post->save();
             //handle tags
             if (!empty($request->input('tags'))) {
                 $tagsArr = [];
                 $tagValues = [];
-                foreach($request->input('tags') as $displayName) {
+                foreach ($request->input('tags') as $displayName) {
                     $displayName = trim($displayName);
                     $tagValue = strtolower($displayName);
                     $tagsArr[$tagValue] = $displayName;
@@ -111,8 +124,10 @@ class PostController extends Controller
             $post->content = $request->input('content');
             $post->excerpt = $request->input('excerpt');
             $post->posted_at = $request->input('posted_at');
-            if ($request->has('is_draft'))
+            if ($request->has('is_draft')){
+                $post->posted_at = null;
                 $post->is_draft = 1;
+            }
             else
                 $post->is_draft = 0;
             $post->save();
@@ -120,7 +135,7 @@ class PostController extends Controller
             if (!empty($request->input('tags'))) {
                 $tagsArr = [];
                 $tagValues = [];
-                foreach($request->input('tags') as $displayName) {
+                foreach ($request->input('tags') as $displayName) {
                     $displayName = trim($displayName);
                     $tagValue = strtolower($displayName);
                     $tagsArr[$tagValue] = $displayName;
@@ -144,7 +159,7 @@ class PostController extends Controller
             $post->tags()->sync($tagIds);
             $post->categories()->sync($request->input('categories'));
             \DB::commit();
-            return ['code' => 0, 'message' => __('Post updated.'), 'data'=>route('post.preview', [$post])];
+            return ['code' => 0, 'message' => __('Post updated.'), 'data' => route('post.preview', [$post])];
         } catch (\Exception $e) {
             \DB::rollBack();
             return ['code' => 1, 'message' => __($e->getMessage())];
