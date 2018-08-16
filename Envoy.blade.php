@@ -12,6 +12,7 @@ $new_release_dir = $releases_dir .'/'. $release;
 clone_repository
 run_composer
 update_symlinks
+update_cache
 @endstory
 
 @task('clone_repository')
@@ -40,4 +41,12 @@ ln -nfs {{ $app_dir }}/.env {{ $new_release_dir }}/.env
 
 echo 'Linking current release'
 ln -nfs {{ $new_release_dir }} {{ $app_dir }}/current
+@endtask
+
+@task('update_cache')
+echo "Updating cache deployment ({{ $release }})"
+cd {{ $app_dir }}/current
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
 @endtask
