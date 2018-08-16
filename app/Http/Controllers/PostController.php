@@ -32,6 +32,7 @@ class PostController extends Controller
         $pageCount = intval(($totalCount - 1) / $perPage) + 1;
         $currentPage = $request->has('page') ? LengthAwarePaginator::resolveCurrentPage() : $pageCount;
         $posts = $query->skip(($currentPage - 1) * $perPage)->take($perPage)->get();
+        $posts = $posts->sortByDesc('posted_at');
 
         $paginator = new LengthAwarePaginator($posts, $totalCount, $perPage, $currentPage, [
             'path' => LengthAwarePaginator::resolveCurrentPath(),
