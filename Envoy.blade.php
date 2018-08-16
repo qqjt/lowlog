@@ -13,6 +13,7 @@ clone_repository
 run_composer
 update_symlinks
 update_cache
+reload_swoole
 @endstory
 
 @task('clone_repository')
@@ -49,4 +50,10 @@ cd {{ $app_dir }}/current
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
+@endtask
+
+@task('reload_swoole')
+echo "Reload swoole ({{ $release }})"
+cd {{ $app_dir }}/current
+php artisan laravels restart
 @endtask
