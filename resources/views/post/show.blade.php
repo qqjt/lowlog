@@ -41,7 +41,7 @@
     @if($post->comments_count)
         <div class="card mt-3">
             <div class="card-header">
-                <div class="total">{{__("Comments: ")}}<b>{{$post->comments_count}}</b></div>
+                <div class="total">{{__("Comments:")}}<b>&nbsp;{{$post->comments_count}}</b></div>
             </div>
             <div id="comments" class="card-body">
 

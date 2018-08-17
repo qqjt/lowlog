@@ -23,7 +23,7 @@
                     <span class="pull-right">{{(string)$comment->created_at}}</span>
                 </div>
                 {!! $comment->html !!}
-                <ul class="list-inline">
+                <ul class="list-inline pull-right">
                     <li class="list-inline-item">
                         <a href="javascript:;" class="reply-comment" data-hashid="{{$comment->hashid}}" data-author-name="{{$comment->author_name}}">
                             <span class="badge badge-secondary"><i class="fa fa-reply"></i>&nbsp;{{__("Reply")}}</span>
