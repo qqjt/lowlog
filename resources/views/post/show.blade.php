@@ -51,7 +51,6 @@
     <!--Comment Form-->
     <div class="mt-3">
         <form role="form" id="comment-form">
-            {!! csrf_field() !!}
             @if(Auth::guest())
                 <div class="form-group">
                     <label for="author_name">{{__("Name:")}}</label>
@@ -110,7 +109,8 @@
 
         function getComments(url) {
             $.ajax({
-                url: url
+                url: url,
+                method: "POST",
             }).done(function (data) {
                 $('#comments').html(data);
             }).fail(function () {

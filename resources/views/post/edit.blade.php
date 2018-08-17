@@ -91,7 +91,6 @@
                 </div>
             </div>
             <button id="save-post-btn" type="button" class="btn btn-primary">{{__('Submit')}}</button>
-            {!! csrf_field() !!}
         </form>
     </div>
     <!--add category modal-->
@@ -161,7 +160,7 @@
             inlineAttachment.editors.codemirror4.attach(simplemde.codemirror, {
                 uploadUrl: "{{route('image.upload')}}",
                 extraParams: {
-                    "_token": "{{csrf_token()}}"
+                    "_token": $('meta[name="csrf-token"]').attr('content')
                 },
                 onFileUploadResponse: function (xhr) {
                     var result = JSON.parse(xhr.responseText),

@@ -22,7 +22,7 @@ Route::group(['prefix'=>'p'], function(){
     Route::post('/{post}/comment', 'CommentController@store')->name('comment.store');
     //show post, load comments
     Route::get('/{post}', 'PostController@show')->name('post.show')->middleware('http.cache');
-    Route::get('/{post}/c', 'CommentController@load')->name('comment.load');
+    Route::post('/{post}/c', 'CommentController@load')->name('comment.load');
 });
 Route::group([], function(){
     // post category
