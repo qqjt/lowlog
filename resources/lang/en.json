@@ -49,5 +49,17 @@
     "Search results for \":q:\"": "Search reasults for \":q:\"",
     ":count posts": ":count posts",
     "Comments:": "Comments:",
-    "Excerpt": "Excerpt"
+    "Excerpt": "Excerpt",
+    "Category": "Category",
+    "Category :category deleted.": "Category :category deleted.",
+    "Category created.": "Category created.",
+    "Category creating failed!": "Category creating failed!",
+    "Close": "Close",
+    "Hello!": "Hello!",
+    "New Category": "New Category",
+    "Regards": "Regards",
+    "Replies to": "Replies to",
+    "Reply": "Reply",
+    "Save": "Save",
+    "Whoops!": "Whoops!"
 }

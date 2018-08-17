@@ -49,5 +49,17 @@
     "Search results for \":q:\"": "“:q”的搜索结果：",
     ":count posts": ":count 篇",
     "Excerpt": "摘要",
-    "Comments: ": "评论："
+    "Comments:": "评论：",
+    "Category created.": "分类已创建",
+    "Category :category deleted.": "分类 :category 已删除",
+    "Replies to": "回复给",
+    "Reply": "回复",
+    "Category": "分类",
+    "New Category": "新分类",
+    "Close": "关闭",
+    "Save": "保存",
+    "Category creating failed!": "分类创建失败",
+    "Whoops!": "糟糕！",
+    "Hello!": "你好！",
+    "Regards": "此致敬礼"
 }

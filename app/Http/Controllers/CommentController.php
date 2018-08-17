@@ -1,7 +1,4 @@
 <?php
-/**
- * TODO support nested comments
- */
 namespace App\Http\Controllers;
 
 use App\Comment;
@@ -48,7 +45,7 @@ class CommentController extends Controller
     public function load(Request $request, Post $post)
     {
         $perPage = 10;
-        $query = $post->comments();
+        $query = $post->comments()->with('parent');
         //Manually create paginator, defaults to the last page.
         $totalCount = $query->count();
         $pageCount = intval(($totalCount - 1) / $perPage) + 1;

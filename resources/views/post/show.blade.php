@@ -50,7 +50,7 @@
     @endif
     <!--Comment Form-->
     <div class="mt-3">
-        <form role="form">
+        <form role="form" id="comment-form">
             {!! csrf_field() !!}
             @if(Auth::guest())
                 <div class="form-group">
@@ -69,6 +69,12 @@
                            placeholder="{{__("http(s)://")}}">
                 </div>
             @endif
+            <div id="reply-comment-hint" class="alert alert-info fade show d-none" role="alert">
+                <button type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p class="mb-0"></p>
+            </div>
             <div class="form-group">
                             <textarea title="{{__("Comment")}}" placeholder="{{__("Add a comment")}}" id="comment"
                                       class="form-control" rows="3"></textarea>
@@ -77,7 +83,7 @@
                         class="fa fa-reply"></i>&nbsp;{{__("Comment")}}
             </button>
             <input type="hidden" name="content">
-            <input type="hidden" name="post_hashid" value="{{$post->hashid}}">
+            <input type="hidden" name="parent_hashid" value="">
         </form>
     </div>
 @endsection
@@ -94,11 +100,6 @@
             tabSize: 4,
             status: false,
             autoDownloadFontAwesome: false,
-            autosave: {
-                enabled: true,
-                delay: 3,
-                uniqueId: 'comment_{{$post->hashid}}'
-            }
         });
         //Ajax load comments
         $('body').on('click', '.pagination a', function (e) {
@@ -117,6 +118,19 @@
             });
         }
         getComments("{{route('comment.load', ['post'=>$post->hashid])}}");
+
+        //Reply button click
+        $(document).on('click', '.reply-comment', function () {
+            $('#reply-comment-hint').removeClass('d-none');
+            $('#reply-comment-hint p').html('{{__("Replies to")}} '+ $(this).data('author-name'));
+            $('#comment-form input[name="parent_hashid"]').val($(this).data('hashid'));
+        });
+
+        //Dismiss reply to someone
+        $(document).on('click', '#reply-comment-hint .close', function () {
+            $('#reply-comment-hint').addClass('d-none');
+            $('#comment-form input[name="parent_hashid"]').val('');
+        });
 
         //Add comment action
         $(document).on('click', '.save-comment', function () {

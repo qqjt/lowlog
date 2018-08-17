@@ -55,6 +55,7 @@ class PostObserver
         $post->toc = $toc;
         $post->html = (string)$htmlDom;
         if (!$post->excerpt)
+            //TODO handle html special chars
             $post->excerpt = str_limit(strip_tags($post->html), 300);
     }
 

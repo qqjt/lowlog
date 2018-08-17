@@ -12,13 +12,24 @@
                        title="{{$comment->author_name}}">
                         {{$comment->author_name}}
                     </a>
+                    @if($comment->parent)
+                        {{__("Replies to")}}&nbsp;
+                        <a href="{{$comment->parent->url}}"
+                           title="{{$comment->parent->author_name}}">
+                            {{$comment->parent->author_name}}
+                        </a>
+                    @endif
                     <!-- TODO floor, nice time -->
                     <span class="pull-right">{{(string)$comment->created_at}}</span>
-                    {{--<div class="meta">
-                        <span class="" title=""></span>
-                    </div>--}}
                 </div>
                 {!! $comment->html !!}
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="javascript:;" class="reply-comment" data-hashid="{{$comment->hashid}}" data-author-name="{{$comment->author_name}}">
+                            <span class="badge badge-secondary"><i class="fa fa-reply"></i>&nbsp;{{__("Reply")}}</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </li>
     @endforeach
