@@ -202,7 +202,7 @@
                         if (res.code === 0) {
                             $('#new-category-modal').modal('hide');
                             $('#categories').append('<div class="form-check form-check-inline">\n' +
-                                '<input class="form-check-input" type="checkbox" value="'+ res.data.id +'" id="category'+ res.data.id +'" checked>\n' +
+                                '<input class="form-check-input" type="checkbox" name="categories[]" value="'+ res.data.id +'" id="category'+ res.data.id +'" checked>\n' +
                                 '<label class="form-check-label" for="category'+ res.data.id +'">\n' + res.data.name +
                                 '</label>\n' +
                                 '</div>');
