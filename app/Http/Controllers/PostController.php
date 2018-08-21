@@ -16,13 +16,23 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $perPage = 10;
-        $query = Post::whereIsDraft(Post::NOT_IN_DRAFT)->with(['author', 'tags'])->orderBy('posted_at');
+        $query = Post::whereIsDraft(Post::NOT_IN_DRAFT)->with(['author', 'tags', 'categories'])->orderBy('posted_at');
         if ($request->has('tags')) {
             $tags = explode(',', $request->input('tags'));
             if (!empty($tags)) {
                 foreach ($tags as $tagValue) {
                     $query = $query->whereHas('tags', function ($q) use ($tagValue) {
                         $q->where('tag_value', $tagValue);
+                    });
+                }
+            }
+        }
+        if ($request->has('cat')) {
+            $cats = explode(',', $request->input('cat'));
+            if (!empty($cats)) {
+                foreach ($cats as $categoryName) {
+                    $query = $query->whereHas('categories', function ($q) use ($categoryName) {
+                        $q->where('name', $categoryName);
                     });
                 }
             }
@@ -176,7 +186,7 @@ class PostController extends Controller
     {
         $post = Post::whereHashid($hashid)->whereIsDraft(Post::NOT_IN_DRAFT)->with(['comments' => function ($query) {
             $query->orderBy('created_at');
-        }])->withCount('comments')->first();
+        }, 'categories', 'tags'])->withCount('comments')->first();
         if ($post === null)
             abort(404, __("Post Not Found."));
         return view('post.show', ['post' => $post]);

@@ -48,5 +48,5 @@ echo "Updating cache deployment ({{ $release }})"
 cd {{ $app_dir }}/current
 php artisan config:cache
 php artisan route:cache
-php artisan view:cache
+php artisan view:clear
 @endtask

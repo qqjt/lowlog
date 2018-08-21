@@ -16,14 +16,25 @@
                                         <li class="list-inline-item">
                                             <span><i class="fa fa-calendar"></i> {{(string)$post->posted_at}}</span>
                                         </li>
-                                        <li class="list-inline-item">
-                                            @if(!$post->tags->isEmpty())
+                                        @if(!$post->categories->isEmpty())
+                                            <li class="list-inline-item">
+                                                <span><i class="fa fa-folder"></i>
+                                                    @foreach($post->categories as $category)
+                                                        <a href="{{route('post.index', ['cat'=>$category->name])}}">{{$category->name}}</a>
+                                                        @if(!$loop->last),@endif
+                                                    @endforeach
+                                                </span>
+                                            </li>
+                                        @endif
+                                        @if(!$post->tags->isEmpty())
+                                            <li class="list-inline-item">
+                                                <span><i class="fa fa-tags"></i></span>
                                                 @foreach($post->tags as $tag)
                                                     <a href="{{route('post.index', ['tags'=>$tag->tag_value])}}"><span
                                                                 class="badge badge-primary">{{$tag->display_name}}</span></a>
                                                 @endforeach
-                                            @endif
-                                        </li>
+                                            </li>
+                                        @endif
                                     </ul>
                                 </div>
                             </li>
@@ -34,9 +45,9 @@
                             {{$paginatedPosts->links()}}
                         </nav>
                     </div>
-                    @else
-                        {{__('Nothing here.')}}
-                    @endif
+                @else
+                    {{__('Nothing here.')}}
+                @endif
             </div>
         </div>
     </div>
