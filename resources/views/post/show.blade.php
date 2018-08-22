@@ -130,12 +130,10 @@
             function getComments(url) {
                 $.ajax({
                     url: url,
-                    method: "POST",
-                    data: {"_token": "{{csrf_token()}}"}
                 }).done(function (data) {
                     $('#comments').html(data);
                 }).fail(function () {
-                    alert("{{__("Comments could not be loaded.")}}");
+                    swal({title: "{{__("Comments could not be loaded.")}}"});
                 });
             }
 
