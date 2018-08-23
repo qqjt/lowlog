@@ -18,7 +18,7 @@ class XzhSubmitFresh extends Command
 
     public function handle()
     {
-        $posts = Post::whereIsDraft(Post::NOT_IN_DRAFT)->where('created_at', '>=', Carbon::now()->startOfDay())->select('hashid')->get();
+        $posts = Post::whereIsDraft(Post::NOT_IN_DRAFT)->where('created_at', '>=', Carbon::now()->subDay())->select('hashid')->get();
         $urls = [];
         foreach ($posts as $post){
             $urls[] = route('post.show', ['post'=>$post->hashid]);
