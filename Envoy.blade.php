@@ -34,9 +34,6 @@ rm -rf {{ $new_release_dir }}/storage
 ln -nfs {{ $app_dir }}/storage {{ $new_release_dir }}/storage
 
 echo 'Linking uploads directory'
-rm -rf {{ $new_release_dir }}/public/uploads
-ln -nfs {{ $app_dir }}/public/uploads {{ $new_release_dir }}/public/uploads
-
 ln -nfs {{ $app_dir }}/storage/app/public {{ $new_release_dir }}/public/storage
 
 echo 'Linking .env file'
@@ -57,6 +54,6 @@ php artisan view:clear
 @task('fix_file_permissions')
 echo 'Updating file permissions'
 cd {{ $app_dir }}/current
-chgrp -R www-data storage bootstrap/cache
-chmod -R ug+rwx storage bootstrap/cache
+chgrp -R www-data bootstrap/cache
+chmod -R ug+rwx bootstrap/cache
 @endtask
