@@ -13,6 +13,7 @@ clone_repository
 run_composer
 update_symlinks
 update_cache
+fix_file_permissions
 @endstory
 
 @task('clone_repository')
@@ -36,6 +37,8 @@ echo 'Linking uploads directory'
 rm -rf {{ $new_release_dir }}/public/uploads
 ln -nfs {{ $app_dir }}/public/uploads {{ $new_release_dir }}/public/uploads
 
+ln -nfs {{ $app_dir }}/storage/app/public {{ $new_release_dir }}/public/storage
+
 echo 'Linking .env file'
 ln -nfs {{ $app_dir }}/.env {{ $new_release_dir }}/.env
 
@@ -49,4 +52,11 @@ cd {{ $app_dir }}/current
 php artisan config:cache
 php artisan route:cache
 php artisan view:clear
+@endtask
+
+@task('fix_file_permissions')
+echo 'Updating file permissions'
+cd {{ $app_dir }}/current
+chgrp -R www-data storage bootstrap/cache
+chmod -R ug+rwx storage bootstrap/cache
 @endtask

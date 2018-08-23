@@ -16,10 +16,8 @@ class ImageController extends Controller
                     throw new \Exception(__("You can only upload image with extensions: ") . implode($allowedExtensions, ','));
                 }
                 $folderName = 'uploads/images/' . date("Ym", time()) . '/' . date("d", time()) . '/' . \Auth::user()->hashid;
-                $destinationPath = public_path() . '/' . $folderName;
-                $safeName = str_random(10) . '.' . ($extension ?: 'png');
-                $file->move($destinationPath, $safeName);
-                $data['filename'] = url($folderName . '/' . $safeName);
+                $filePath = $file->store($folderName, 'public');
+                $data['filename'] = url('storage'. '/' . $filePath);
             } catch (\Exception $exception) {
                 return ['error' => $exception->getMessage()];
             }
