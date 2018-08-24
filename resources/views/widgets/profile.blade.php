@@ -8,7 +8,7 @@
             -webkit-border-radius: 50% !important;
             -moz-border-radius: 50% !important;
             border-radius: 50% !important;">
-        <img src="{{url('avatar.jpg')}}" class="rounded-circle" alt="">
+        <img src="{{cdn(url('avatar.jpg'))}}" class="rounded-circle" alt="">
     </div>
     <!-- END SIDEBAR USERPIC -->
     <!-- SIDEBAR USER TITLE -->

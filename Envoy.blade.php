@@ -49,6 +49,7 @@ cd {{ $app_dir }}/current
 php artisan config:cache
 php artisan route:cache
 php artisan view:clear
+php artisan http-cache:clear
 @endtask
 
 @task('fix_file_permissions')
