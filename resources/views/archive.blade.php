@@ -1,5 +1,7 @@
 @extends('layouts.two')
-
+@section('sidebar')
+    @include('widgets.profile')
+@endsection
 @section('content')
     @foreach($archive as $year => $months)
         <h3 class="al_year">{{$year}} <em>({{__(":count posts", ['count'=>$months['count']])}})</em></h3>

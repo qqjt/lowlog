@@ -1,5 +1,7 @@
 @extends('layouts.two')
-
+@section('sidebar')
+    @include('widgets.profile')
+@endsection
 @section('content')
     <h1 class="bd-title">关于</h1>
     <p>码农一只。</p>
