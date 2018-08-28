@@ -23,22 +23,22 @@
     <!-- END SIDEBAR USER TITLE -->
     <!-- SIDEBAR BUTTONS -->
     <div class="profile-buttons">
-        <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-twitter"></i></button>
-        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-envelope"></i></button>
+        <a href="https://twitter.com/{{config('blog.blogger.twitter')}}" title="twitter/{{config('blog.blogger.twitter')}}"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-twitter"></i></button></a>
+        <a href="https://github.com/{{config('blog.blogger.github')}}" title="github/{{config('blog.blogger.github')}}"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-envelope"></i></button></a>
     </div>
     <!-- END SIDEBAR BUTTONS -->
     <!-- SIDEBAR MENU -->
-    <nav class="profile-menu py-2 mx-3">
-        <div class="list-group list-group-flush">
-            <hr>
-            <a href="{{route('post.index')}}" class="list-group-item list-group-item-action">
-                <i class="fa fa-home"></i>&nbsp;{{__("Home")}}
-            </a>
-            <a href="https://github.com/qqjt" target="_blank" class="list-group-item list-group-item-action">
-                <i class="fa fa-github"></i>&nbsp;qqjt <i class="fa fa-external-link"></i>
-            </a>
-            <hr>
-        </div>
-    </nav>
+    {{--<nav class="profile-menu py-2 mx-3">--}}
+        {{--<div class="list-group list-group-flush">--}}
+            {{--<hr>--}}
+            {{--<a href="{{route('post.index')}}" class="list-group-item list-group-item-action">--}}
+                {{--<i class="fa fa-home"></i>&nbsp;{{__("Home")}}--}}
+            {{--</a>--}}
+            {{--<a href="https://github.com/qqjt" target="_blank" class="list-group-item list-group-item-action">--}}
+                {{--<i class="fa fa-github"></i>&nbsp;qqjt <i class="fa fa-external-link"></i>--}}
+            {{--</a>--}}
+            {{--<hr>--}}
+        {{--</div>--}}
+    {{--</nav>--}}
     <!-- END MENU -->
 </div>
