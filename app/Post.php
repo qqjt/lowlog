@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 
 /**
  * App\Post
@@ -47,7 +49,7 @@ use Laravel\Scout\Searchable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereIsDraft($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereToc($value)
  */
-class Post extends Model
+class Post extends Model implements Feedable
 {
     use SoftDeletes;
     use Searchable;
@@ -68,7 +70,23 @@ class Post extends Model
         return 'hashid';
     }
 
-    //relationships
+    // Feed
+    public function toFeedItem()
+    {
+        return FeedItem::create()
+            ->id($this->hashid)
+            ->title($this->title)
+            ->summary($this->excerpt)
+            ->updated($this->updated_at)
+            ->link(route('post.show', $this->hashid))
+            ->author($this->author->name);
+    }
+    public static function getFeedItems()
+    {
+        return Post::all();
+    }
+
+    // Relationships
     public function author()
     {
         return $this->belongsTo(User::class);
