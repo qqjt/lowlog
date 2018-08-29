@@ -14,18 +14,51 @@ if (!function_exists('escape_like')) {
 
 if (!function_exists('cdn')) {
     /**
-     * @param $url
+     * @param $uri
      * @param string $prefix
      * @return string
+     *
+     * Add cdn prefix to $uri
      */
-    function cdn($url, $prefix = 'https://o68g2cu3w.qnssl.com')
+    function cdn($uri, $prefix = null)
     {
+        if ($prefix===null)
+            $prefix=config('qiniu.prefix');
         if (App::environment('local'))
-            return $url;
-        $url = ltrim($url, '/');
+            return $uri;
+        $url = ltrim($uri, '/');
         return $prefix . '/' . $url;
     }
 }
+
+if (!function_exists('cdn_replace')) {
+    /**
+     * @param $content
+     * @param null $prefix
+     * @return mixed
+     *
+     * Replace urls to cdn urls
+     */
+    function cdn_replace($content, $prefix = null)
+    {
+        if (App::environment('prod')) {
+            if ($prefix===null)
+                $prefix=config('qiniu.prefix');
+            $base =  env('APP_URL');
+
+            $base = trim($base, '/');
+            $prefix = trim($prefix, '/');
+
+            $targets = [config('filesystems.disks.public.url')];
+            foreach ($targets as $target) {
+                $replace = str_replace($base, $prefix, $target);
+                $content = str_replace($target, $replace, $content);
+            }
+        }
+        return $content;
+    }
+}
+
 
 if (!function_exists('str_starts_with')) {
     /**
