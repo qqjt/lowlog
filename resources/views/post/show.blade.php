@@ -22,6 +22,12 @@
 @section('content')
     <h1 class="bd-title">
         <a href="{{route('post.show', ['hashid'=>$post->hashid])}}">{{$post->title}}</a>
+        <div class="float-right">
+            @can('update', $post)
+                &nbsp;<a href="{{route('post.edit', [$post])}}" title="{{__("Edit")}}"><span
+                            class="badge badge-success"><i class="fa fa-edit"></i></span></a>
+            @endcan
+        </div>
     </h1>
     <ul class="list-inline list-unstyled">
         <li class="list-inline-item"><span><i class="fa fa-calendar"></i>&nbsp;{{(string)$post->posted_at}} </span></li>
