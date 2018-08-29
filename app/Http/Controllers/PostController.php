@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Comment;
 use App\Post;
 use App\Tag;
 use Carbon\Carbon;
-use function foo\func;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 

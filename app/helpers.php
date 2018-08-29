@@ -44,7 +44,7 @@ if (!function_exists('cdn_replace')) {
         if (App::environment('prod')) {
             if ($prefix===null)
                 $prefix=config('qiniu.prefix');
-            $base =  env('APP_URL');
+            $base =  config('app.url');
 
             $base = trim($base, '/');
             $prefix = trim($prefix, '/');
