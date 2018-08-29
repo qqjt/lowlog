@@ -23,6 +23,7 @@
         "rap2hpoutre/laravel-log-viewer": "^0.11.0",
         "spatie/laravel-analytics": "^3.6",
         "spatie/laravel-backup": "^5.5",
+        "spatie/laravel-feed": "^2.1",
         "sunra/php-simple-html-dom-parser": "^1.5",
         "tamayo/laravel-scout-elastic": "^3.0",
         "thomaswelton/laravel-gravatar": "^1.1",
