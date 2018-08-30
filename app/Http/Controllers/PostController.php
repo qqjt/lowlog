@@ -185,9 +185,9 @@ class PostController extends Controller
         $post = Post::whereHashid($hashid)->whereIsDraft(Post::NOT_IN_DRAFT)->with(['comments' => function ($query) {
             $query->orderBy('created_at');
         }, 'categories', 'tags'])->withCount('comments')->first();
-        $post->html = cdn_replace($post->html);
         if ($post === null)
             abort(404, __("Post Not Found."));
+        $post->html = cdn_replace($post->html);
         return view('post.show', ['post' => $post]);
     }
 
