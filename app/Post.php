@@ -83,7 +83,7 @@ class Post extends Model implements Feedable
     }
     public static function getFeedItems()
     {
-        return Post::whereIsDraft(Post::NOT_IN_DRAFT)->take(10)->get();
+        return Post::whereIsDraft(Post::NOT_IN_DRAFT)->orderBy('posted_at', 'desc')->take(10)->get();
     }
 
     // Relationships
