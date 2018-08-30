@@ -77,13 +77,13 @@ class Post extends Model implements Feedable
             ->id($this->hashid)
             ->title($this->title)
             ->summary($this->excerpt)
-            ->updated($this->updated_at)
+            ->updated($this->posted_at)
             ->link(route('post.show', $this->hashid))
             ->author($this->author->name);
     }
     public static function getFeedItems()
     {
-        return Post::whereIsDraft(Post::NOT_IN_DRAFT)->get();
+        return Post::whereIsDraft(Post::NOT_IN_DRAFT)->take(10)->get();
     }
 
     // Relationships
