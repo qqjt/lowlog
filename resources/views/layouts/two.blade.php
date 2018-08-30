@@ -39,8 +39,8 @@
                     <a class="nav-link" href="{{ route('about') }}"><i class="fa fa-user"></i>&nbsp;{{__("About")}}
                     </a>
                 </li>
-                <li class="nav-item {{active_class(if_route('feeds.main'))}}">
-                    <a class="nav-link" href="{{ route('feeds.main') }}"><i class="fa fa-rss"></i>&nbsp;{{__("RSS")}}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('feeds.atom') }}"><i class="fa fa-rss"></i>&nbsp;{{__("RSS")}}
                     </a>
                 </li>
             </ul>

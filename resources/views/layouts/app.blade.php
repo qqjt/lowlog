@@ -41,6 +41,10 @@
                     <a class="nav-link" href="{{ route('about') }}"><i class="fa fa-user"></i>&nbsp;{{__("About")}}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('feeds.atom') }}"><i class="fa fa-rss"></i>&nbsp;{{__("RSS")}}
+                    </a>
+                </li>
             </ul>
 
             <ul class="navbar-nav m-auto">

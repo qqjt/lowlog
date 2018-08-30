@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
@@ -73,13 +74,15 @@ class Post extends Model implements Feedable
     // Feed
     public function toFeedItem()
     {
-        return FeedItem::create()
-            ->id($this->hashid)
-            ->title($this->title)
-            ->summary($this->excerpt)
-            ->updated($this->posted_at)
-            ->link(route('post.show', $this->hashid))
-            ->author($this->author->name);
+        return FeedItem::create([
+            'id' =>$this->hashid,
+            'title' =>$this->title,
+            'summary' =>$this->excerpt,
+            'content' => $this->html,
+            'updated' =>$this->posted_at,
+            'link' =>route('post.show', $this->hashid),
+            'author' =>$this->author->name]
+        );
     }
     public static function getFeedItems()
     {

@@ -23,6 +23,9 @@
             <summary type="html">
                 <![CDATA[{!! $item->summary !!}]]>
             </summary>
+            <content type="html">
+                <![CDATA[{!! $item->content !!}]]>
+            </content>
             <updated>{{ $item->updated->toAtomString() }}</updated>
         </entry>
     @endforeach

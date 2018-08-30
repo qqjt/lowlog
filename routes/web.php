@@ -1,6 +1,5 @@
 <?php
 Auth::routes();
-Route::feeds();
 Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('/', 'PostController@index')->name('post.index')->middleware('http.cache');
