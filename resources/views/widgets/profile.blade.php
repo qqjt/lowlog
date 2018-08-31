@@ -24,7 +24,7 @@
     <!-- SIDEBAR BUTTONS -->
     <div class="profile-buttons">
         <a href="https://twitter.com/{{config('blog.blogger.twitter')}}" title="twitter/{{config('blog.blogger.twitter')}}"><button type="button" class="btn btn-primary btn-sm"><i class="fa fa-twitter"></i></button></a>
-        <a href="https://github.com/{{config('blog.blogger.github')}}" title="github/{{config('blog.blogger.github')}}"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-envelope"></i></button></a>
+        <a href="https://github.com/{{config('blog.blogger.github')}}" title="github/{{config('blog.blogger.github')}}"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-github"></i></button></a>
     </div>
     <!-- END SIDEBAR BUTTONS -->
     <!-- SIDEBAR MENU -->
