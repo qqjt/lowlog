@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $myPosts = Post::whereAuthorId(\Auth::user()->id)->with(['tags'])->orderBy('posted_at', 'desc')->paginate(10);
+        $myPosts = Post::whereAuthorId(\Auth::user()->id)->with(['tags'])->orderByDesc('is_draft')->orderBy('posted_at', 'desc')->paginate(10);
         return view('home', ['myPosts' => $myPosts]);
     }
 }
