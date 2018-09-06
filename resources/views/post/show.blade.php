@@ -43,10 +43,9 @@
         @endif
         @if(!$post->tags->isEmpty())
             <li class="list-inline-item">
-                <span><i class="fa fa-tags"></i></span>
                 @foreach($post->tags as $tag)
                     <a href="{{route('post.index', ['tags'=>$tag->tag_value])}}"><span
-                                class="badge badge-primary">{{$tag->display_name}}</span></a>
+                                class="badge badge-primary">#{{$tag->display_name}}</span></a>
                 @endforeach
             </li>
         @endif
