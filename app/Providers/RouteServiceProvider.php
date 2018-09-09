@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        $this->mapPureRoutes();
+        //$this->mapPureRoutes();
     }
 
     /**
@@ -72,9 +72,9 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the "web" routes for the application.
+     * Define the "pure" routes for the application.
      *
-     * These routes all receive session state, CSRF protection, etc.
+     * No middleware.
      *
      * @return void
      */

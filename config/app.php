@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'lowlog'),
+    'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ return [
     |
     | This value determines the "environment" your application is currently
     | running in. This may determine how you prefer to configure various
-    | services your application utilizes. Set this in your ".env" file.
+    | services the application utilizes. Set this in your ".env" file.
     |
     */
 
@@ -159,7 +159,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
@@ -213,6 +212,7 @@ return [
         'Purifier' => Mews\Purifier\Facades\Purifier::class,
         'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
         'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
+        'Active' => HieuLe\Active\Facades\Active::class,
     ],
 
 ];

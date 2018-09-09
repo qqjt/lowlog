@@ -1,2 +1,2 @@
 <?php
-Route::feeds();
+//TODO fix pure route

@@ -1,11 +1,14 @@
 <?php
 Auth::routes();
+//TODO feed route
+Route::feeds();
+
 Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
-Route::get('/', 'PostController@index')->name('post.index')->middleware('http.cache');
+Route::get('/', 'PostController@index')->name('post.index');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/about', 'PageController@about')->name('about')->middleware(['http.cache']);
-Route::get('/archive', 'PageController@archive')->name('archive')->middleware(['http.cache']);
+Route::get('/about', 'PageController@about')->name('about');
+Route::get('/archive', 'PageController@archive')->name('archive');
 //search post
 Route::match(['get', 'post'], '/s', 'PostController@search')->name('post.search');
 
@@ -16,12 +19,12 @@ Route::group(['prefix'=>'p'], function(){
         Route::post('/create', 'PostController@store')->name('post.store')->middleware('can:create,App\Post');
         Route::post('/{post}/edit', 'PostController@update')->name('post.update')->middleware('can:update,post');
         Route::get('/{post}/edit', 'PostController@edit')->name('post.edit')->middleware('can:update,post');
-        Route::get('/{post}/preview', 'PostController@preview')->name('post.preview')->middleware('http.cache');
+        Route::get('/{post}/preview', 'PostController@preview')->name('post.preview');
     });
     //add comment
     Route::post('/{post}/comment', 'CommentController@store')->name('comment.store');
     //show post, load comments
-    Route::get('/{post}', 'PostController@show')->name('post.show')->middleware('http.cache');
+    Route::get('/{post}', 'PostController@show')->name('post.show');
     Route::get('/{post}/c', 'CommentController@load')->name('comment.load');
 });
 Route::group([], function(){
