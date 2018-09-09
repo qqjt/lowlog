@@ -60,7 +60,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        //TODO handle http cache
         'http.cache' => \Barryvdh\HttpCache\Middleware\CacheRequests::class,
         'ttl' => \Barryvdh\HttpCache\Middleware\SetTtl::class,
     ];
